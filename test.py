@@ -16,3 +16,7 @@ dummy.equip_gear(sword)
 print(dummy.stats)
 print(dummy.hp)
 print(dummy.sp)
+
+dummy.level_up(1)
+print(dummy.lvl)
+print(dummy.hp)

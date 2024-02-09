@@ -1,4 +1,5 @@
 from ..Skills.base_skill import Base_Skill
+from .. import parameters
 
 class Base_Character:
     def __init__(self, base_stats: list, lvl: int):
@@ -15,23 +16,9 @@ class Base_Character:
 
     @base_stats.setter
     def base_stats(self, value: list):
-        self.__base_stats = {
-                'STR': 0,
-                'INT': 0,
-                'WIS': 0,
-                'END': 0,
-                'GUI': 0,
-                'AGI': 0
-            }
+        self.__base_stats = dict(zip(parameters.stats, [0, 0, 0, 0, 0, 0]))
         if type(value) == list:
-            self.__base_stats.update({
-                'STR': value[0],
-                'INT': value[1],
-                'WIS': value[2],
-                'END': value[3],
-                'GUI': value[4],
-                'AGI': value[5]
-            })
+            self.__base_stats.update(dict(zip(parameters.stats, value)))
 
     @property
     def max_hp(self):
@@ -61,6 +48,9 @@ class Base_Character:
         self.hp += value
         if self.hp > self.max_hp:
             self.hp = self.max_hp
+
+    def status(self):
+        pass
 
     def die(self):
         pass

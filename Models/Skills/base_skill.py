@@ -1,6 +1,9 @@
 from .. import parameters
 from random import randint
 
+from .. import parameters
+from random import randint
+
 class Base_Skill:
     def __init__(self,
                 # value: int = 0,

@@ -20,6 +20,6 @@ class Base_Gear:
 
     @stats.setter
     def stats(self, value: list):
-        self.__stats = dict(zip(parameters.stats, [0, 0, 0, 0, 0, 0]))
+        self.__stats = dict.fromkeys(parameters.stats, 0)
         if type(value) == list:
             self.__stats.update(dict(zip(parameters.stats, value)))

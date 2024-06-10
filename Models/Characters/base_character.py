@@ -68,34 +68,6 @@ class Base_Character:
                 x.action(self, target)
 
     def damage(self, value: float):
-    def act(self, action: str, inst: str, target):
-        '''_summary_
-
-        Args:
-            action (str): type of action to be performed
-            inst (str): specific thing to be done
-            target (Base_Character): target of the action
-        '''
-
-        if self.status_effect == 'Sealed':
-            return
-
-        match action:
-            case 'Item':
-                pass
-            case 'Run':
-                pass
-            case 'Skill':
-                self.use_skill(inst, target)
-            case _:
-                return
-
-    def use_skill(self, skill, target):
-        for x in self.skills:
-            if x.name == skill:
-                x.action(self, target)
-
-    def damage(self, value: float):
         value /= self.DEF
         if value < self.hp:
             self.hp -= value
@@ -103,7 +75,6 @@ class Base_Character:
             self.hp = 0
             self.die()
 
-    def heal(self, value: float):
     def heal(self, value: float):
         self.hp += value
         if self.hp > self.max_hp:

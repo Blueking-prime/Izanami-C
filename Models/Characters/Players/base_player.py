@@ -53,7 +53,7 @@ class Base_Player(Base_Character):
         self.sp = (self.sp/current_max[1]) * self.max_sp
 
     def level_up(self, value):
-        self.level_up_exp = 50 * (2 ** self.lvl) # todo Add function to calculate and scale level up exp
+        self.level_up_exp = 50 * (2 ** self.lvl)
 
         self.exp += value
         if self.exp >= self.level_up_exp:

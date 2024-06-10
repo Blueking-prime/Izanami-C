@@ -23,9 +23,9 @@ print(dummy.lvl)
 print(dummy.hp)
 
 dun = Dungeon()
-print(dun)
+print(dun.__dict__)
 dun.display_dungeon()
 
-# import sys, os
-# print(os.getcwd)
-# print()
+print('-------------------------------------')
+dummy.move(dun, 'u')
+dun.display_dungeon()

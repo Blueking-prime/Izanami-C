@@ -68,3 +68,17 @@ class Base_Player(Base_Character):
         super().status()
         if self.status_effect == 'EnExhaust':
             self.sp -= self.max_sp / 4
+
+    def move(self, map, direction: str):
+        x, y = map.player_pos
+        match direction:
+            case 'u':
+                map.player_pos = (x, y - 1)
+            case 'd':
+                map.player_pos = (x, y + 1)
+            case 'l':
+                map.player_pos = (x - 1, y)
+            case 'r':
+                map.player_pos = (x + 1, y)
+            case _:
+                pass

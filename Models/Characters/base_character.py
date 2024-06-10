@@ -4,7 +4,7 @@ from .. import parameters
 class Base_Character:
     def __init__(self, name, base_stats: list, lvl: int):
         self.name = name
-        self.base_stats(base_stats)
+        self.base_stats = base_stats
         self.stats = self.base_stats
         self.lvl = lvl
         self.hp = self.max_hp

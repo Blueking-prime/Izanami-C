@@ -10,9 +10,10 @@ dungeon_sample = [
 
 
 class Dungeon:
-    def __init__(self, width = 8, height = 5, spawn_chance = 0.2, enemy_types = None) -> None:
+    def __init__(self, width = 8, height = 5, spawn_chance = 0.8, enemy_types = None) -> None:
         self.width = width
         self.height = height
+        self.spawn_chance = spawn_chance
 
         check = False
         while not check:
@@ -20,8 +21,20 @@ class Dungeon:
             check = self.verify_dungeon()
 
         self.player_pos = self.start
-        # self.spawn_chance = spawn_chance
         # self.enemy_types = enemy_types
+
+    @property
+    def player_pos(self):
+        return self.__player_pos
+    @player_pos.setter
+    def player_pos(self, coords: tuple):
+        x, y = coords
+        if (x < 0 or x >= self.width) or (y < 0 or y >= self.height):
+            print('Out of Bounds!')
+        elif coords in self.walls:
+            print("There's a wall in the way")
+        else:
+            self.__player_pos = coords
 
 
     def generate_dungeon_layout(self):
@@ -39,15 +52,27 @@ class Dungeon:
             self.stop = utils.rand_coord(self.width, self.height)
         self.filled_coords.append(self.stop)
 
-        # Treasure Chests
+        self.generate_treasures()
+        self.generate_walls()
+        self.spawn_enemies()
+
+        self.width += 1
+        self.height += 1
+
+
+    def generate_treasures(self):
         self.treasure_no = 1 + utils.rand_spread(0.2, 5)
         self.treasures = []
-        for i in range(self.treasure_no):
+        i = 0
+        while i < self.treasure_no:
             coord = utils.rand_coord(self.width, self.height)
+            if coord in self.filled_coords:
+                continue
             self.treasures.append(coord)
             self.filled_coords.append(coord)
+            i += 1
 
-        # Walls
+    def generate_walls(self):
         self.walls = []
         for i in range(self.width + 1):
             for j in range(self.height + 1):
@@ -66,9 +91,18 @@ class Dungeon:
                             self.walls.append(coord)
                             self.filled_coords.append(coord)
 
-        self.width += 1
-        self.height += 1
-
+    def spawn_enemies(self):
+        enemy_no = utils.rand_spread(self.spawn_chance, self.width * self.height - len(self.filled_coords))
+        self.enemy_no = enemy_no
+        self.enemy_tiles = []
+        i = 0
+        while i < enemy_no:
+            coord = utils.rand_coord(self.width, self.height)
+            if coord in self.filled_coords:
+                continue
+            self.enemy_tiles.append(coord)
+            self.filled_coords.append(coord)
+            i += 1
 
     def verify_dungeon(self):
         if not utils.path(self.start, self.stop, self.walls, self.width, self.height, []):
@@ -101,8 +135,6 @@ class Dungeon:
 
         for i in dungeon_map:
             print(i)
-
-
 
 
 

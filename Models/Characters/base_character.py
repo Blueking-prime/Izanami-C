@@ -47,20 +47,21 @@ class Base_Character:
             action (str): type of action to be performed
             inst (str): specific thing to be done
             target (Base_Character): target of the action
+
+        actions:
+        1 - Item
+        2 - Skill
         '''
 
         if self.status_effect == 'Sealed':
+            print('You are stunned!')
             return
 
         match action:
             case 'Item':
                 pass
-            case 'Run':
-                pass
             case 'Skill':
                 self.use_skill(inst, target)
-            case _:
-                return
 
     def use_skill(self, skill, target):
         for x in self.skills:
@@ -81,8 +82,6 @@ class Base_Character:
             self.hp = self.max_hp
 
     def status(self):
-        if self.status_effect == 'Toxin':
-            self.damage(self.max_hp / 7)
         if self.status_effect == 'Toxin':
             self.damage(self.max_hp / 7)
 

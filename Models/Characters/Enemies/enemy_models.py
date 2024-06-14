@@ -9,7 +9,7 @@ class Goblin(Base_Enemy):
     def __init__(self, name: str = '', lvl: int = 1):
         if name == '':
             name = Goblin.__name__
-        super().__init__(name, Goblin.class_base_stats, Goblin.trait, lvl)
+        super().__init__(name, Goblin.class_base_stats, lvl)
 
 class Imp(Base_Enemy):
     atk_line = "The Imp slashes at you with improvised weapons and you take"

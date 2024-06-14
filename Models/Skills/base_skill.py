@@ -9,7 +9,7 @@ class Base_Skill:
                 # value: int = 0,
                  name: str,
                  stats: list = [],
-                 stat_multiplier: int = 0,
+                 stat_multiplier: int = 1,
                  boost: tuple = (1, 1),
                  cost: int = 0) -> None:
         self.name = name
@@ -36,8 +36,10 @@ class Base_Skill:
 
         for stat, value in obj.stats.items():
             if stat in self.stat_list:
-                self.stat_total += value
+                stat_total += value
 
+        if crit_value > 1:
+            print('CRITICAL HIT!')
         self.value = stat_total * self.stat_multiplier * crit_value
 
         obj.ATK, obj.DEF = self.boost
@@ -50,7 +52,7 @@ class Offensive_Skill(Base_Skill):
                  name: str,
                  trait: str,
                  stats: list = [],
-                 stat_multiplier: int = 0,
+                 stat_multiplier: int = 1,
                  boost: tuple = (1, 1),
                  cost: int = 0) -> None:
         super().__init__(name, stats, stat_multiplier, boost, cost)
@@ -58,8 +60,11 @@ class Offensive_Skill(Base_Skill):
 
     def action(self, obj, target):
         super().action(obj, target)
-        if self.trait == target.trait:
-            self.value *= 2
+        try:
+            if self.trait == target.trait:
+                self.value *= 2
+        except AttributeError:
+            pass
         target.damage(self.value)
 
 class Heal_skill(Base_Skill):

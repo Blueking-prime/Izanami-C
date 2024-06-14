@@ -11,7 +11,7 @@ class Base_Character:
         self.ATK = 1
         self.DEF = 1
         self.status_effect = None
-        self.status_effect = None
+        self.alive = True
 
     @property
     def base_stats(self):
@@ -34,8 +34,9 @@ class Base_Character:
 
     @skills.setter
     def skills(self, skills: list):
-        if not self.__skills:
-            #todo: Add basic attack
+        try:
+            self.__skills
+        except AttributeError:
             self.__skills = []
         self.__skills += [x for x in skills if isinstance(x, Base_Skill) and x not in self.__skills]
 
@@ -58,9 +59,9 @@ class Base_Character:
             return
 
         match action:
-            case 'Item':
+            case 'Items':
                 pass
-            case 'Skill':
+            case 'Skills':
                 self.use_skill(inst, target)
 
     def use_skill(self, skill, target):
@@ -70,6 +71,7 @@ class Base_Character:
 
     def damage(self, value: float):
         value /= self.DEF
+        print(f'{self.name} takes {value} damage!')
         if value < self.hp:
             self.hp -= value
         else:
@@ -78,6 +80,7 @@ class Base_Character:
 
     def heal(self, value: float):
         self.hp += value
+        print(f'{self.name} healed {value} HP')
         if self.hp > self.max_hp:
             self.hp = self.max_hp
 
@@ -86,4 +89,5 @@ class Base_Character:
             self.damage(self.max_hp / 7)
 
     def die(self):
-        pass
+        print(f'{self.name} is dead')
+        self.alive = False

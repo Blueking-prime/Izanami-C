@@ -12,3 +12,8 @@ Models/__pycache__/parameters.cpython-312.pyc
 Models/__pycache__/utils.cpython-312.pyc
 Models/Maps/__pycache__/__init__.cpython-312.pyc
 Models/Maps/__pycache__/dungeon.cpython-312.pyc
+Models/Characters/Enemies/__pycache__/__init__.cpython-312.pyc
+Models/Characters/Enemies/__pycache__/base_enemy.cpython-312.pyc
+Models/Characters/Enemies/__pycache__/enemy_models.cpython-312.pyc
+Models/Characters/Players/__pycache__/player_models.cpython-312.pyc
+Scripts/__pycache__/battle.cpython-312.pyc

@@ -6,6 +6,8 @@ traits = ['Fire', 'Wind', 'Water', 'Light']
 
 gear_parts = ['head', 'weapon', 'body']
 
+moves = ['Skills', 'Defend', 'Items', 'Run']
+
 gear = {
     # Head
     'WoolCap': {

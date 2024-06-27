@@ -17,3 +17,4 @@ Models/Characters/Enemies/__pycache__/base_enemy.cpython-312.pyc
 Models/Characters/Enemies/__pycache__/enemy_models.cpython-312.pyc
 Models/Characters/Players/__pycache__/player_models.cpython-312.pyc
 Scripts/__pycache__/battle.cpython-312.pyc
+Models/Skills/__pycache__/player_skills.cpython-312.pyc

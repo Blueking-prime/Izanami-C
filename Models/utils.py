@@ -12,6 +12,13 @@ def rand_spread(chance: float, limit: int):
     return n
 
 
+def rand_chance(chance: float):
+    if random() < chance:
+        return True
+    else:
+        return False
+
+
 def path(start: tuple[int, int], goal: tuple[int, int],
         walls: list[tuple], width: int, height: int, visited: list = []):
 

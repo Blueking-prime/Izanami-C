@@ -20,7 +20,6 @@ class Base_Character:
     @base_stats.setter
     def base_stats(self, value: list):
         self.__base_stats = dict.fromkeys(parameters.stats, 0)
-        self.__base_stats = dict.fromkeys(parameters.stats, 0)
         if type(value) == list:
             self.__base_stats.update(dict(zip(parameters.stats, value)))
 

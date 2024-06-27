@@ -1,8 +1,4 @@
-from .. import parameters
-from random import randint
-
-from .. import parameters
-from random import randint
+from ..utils import rand_chance, randint
 
 class Base_Skill:
     def __init__(self,
@@ -11,14 +7,17 @@ class Base_Skill:
                  stats: list = [],
                  stat_multiplier: int = 1,
                  boost: tuple = (1, 1),
-                 cost: int = 0) -> None:
+                 cost: int = 0,
+                 flavour_text: str = '',
+                 status_effect: str | tuple | None = None) -> None:
         self.name = name
         self.value = 0
-        self.status_effect = None
+        self.status_effect = status_effect
         self.stat_list = stats
         self.stat_multiplier = stat_multiplier
         self.boost = boost
         self.cost = cost
+        self.flavour_text = flavour_text
 
     def action(self, obj, target):
         if obj.status_effect == 'Exhausted':
@@ -39,23 +38,34 @@ class Base_Skill:
                 stat_total += value
 
         if crit_value > 1:
-            print('CRITICAL HIT!')
+            print('CRIT!')
+        elif crit_value < 1:
+            print('Whiffed...')
         self.value = stat_total * self.stat_multiplier * crit_value
 
-        obj.ATK, obj.DEF = self.boost
+        obj.ATK *= self.boost[0]
+        obj.DEF *= self.boost[1]
 
-        target.status_effect = self.status_effect
+        if type(self.status_effect) is tuple:
+            if rand_chance(self.status_effect[1]):
+                target.status_effect = self.status_effect[0]
+            else:
+                print('Miss!')
+        else:
+            target.status_effect = self.status_effect
 
 
 class Offensive_Skill(Base_Skill):
     def __init__(self,
                  name: str,
-                 trait: str,
+                 trait: str | None = None,
                  stats: list = [],
                  stat_multiplier: int = 1,
                  boost: tuple = (1, 1),
-                 cost: int = 0) -> None:
-        super().__init__(name, stats, stat_multiplier, boost, cost)
+                 cost: int = 0,
+                 flavour_text: str = '',
+                 status_effect: str | None = None) -> None:
+        super().__init__(name, stats, stat_multiplier, boost, cost, flavour_text)
         self.trait = trait
 
     def action(self, obj, target):
@@ -65,9 +75,10 @@ class Offensive_Skill(Base_Skill):
                 self.value *= 2
         except AttributeError:
             pass
+        self.value *= obj.ATK
         target.damage(self.value)
 
-class Heal_skill(Base_Skill):
+class Heal_Skill(Base_Skill):
     def action(self, obj, target):
         super().action(obj, target)
         target.heal(self.value)

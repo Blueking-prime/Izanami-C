@@ -1,6 +1,6 @@
 stats = ["STR", "INT", "WIS", "END", "GUI", "AGI"]
 
-status_ailments = ['EnExhaust', 'Sealed', 'Toxin', 'Exhausted']
+status_ailments = ['EnExhaust', 'Sealed', 'Toxin', 'Exhausted', 'Stunned', 'Death']
 
 traits = ['Fire', 'Wind', 'Water', 'Light']
 

@@ -1,7 +1,7 @@
 from Models.Characters.Players.player_models import Ronin
 from Models.Characters.Enemies.enemy_models import Goblin
 from Models.Gear.base_gear import Base_Gear
-from Models.Skills.base_skill import Offensive_Skill, Heal_skill
+from Models.Skills.base_skill import Offensive_Skill, Heal_Skill
 from Models.Maps.dungeon import Dungeon
 from Scripts.battle import battle
 
@@ -23,15 +23,19 @@ print(dummy.stats)
 print(dummy.hp)
 print(dummy.sp)
 
-dummy.level_up(1)
+dummy.level_up(105)
+print(dummy.exp)
+print(dummy.level_up_exp)
 print(dummy.lvl)
 print(dummy.hp)
+print(dummy.stats)
 
 fire = Offensive_Skill('Fire', 'fire', ['INT', 'STR'])
 wind = Offensive_Skill('Wind', 'wind', ['INT', 'WIS'])
-heal = Heal_skill('Heal', ['GUI', 'WIS'])
+heal = Heal_Skill('Heal', ['GUI', 'WIS'])
 
 dummy.skills = [fire, wind, heal]
+
 
 dun = Dungeon()
 print(dun.__dict__)

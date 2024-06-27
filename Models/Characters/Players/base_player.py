@@ -1,5 +1,6 @@
 from ..base_character import Base_Character, parameters
 from ...Gear.base_gear import Base_Gear
+from ...Skills.player_skills import default_skills
 
 class Base_Player(Base_Character):
     def __init__(self, name: str, base_stats: list, lvl: int):
@@ -9,6 +10,8 @@ class Base_Player(Base_Character):
         self.exp = 0
         self.gold = 0
         self.mag = 0
+        self.level_stats = []
+        self.skills = default_skills
 
     @property
     def max_sp(self):
@@ -62,7 +65,14 @@ class Base_Player(Base_Character):
             self.exp -= self.level_up_exp
             self.lvl += 1
 
+            curr_stats = self.base_stats
+            for i in self.level_stats:
+                curr_stats[i] += 1
+            self.base_stats = list(curr_stats.values())
+
             self.update_derived_stats(current_max)
+        self.level_up_exp = 50 * (2 ** self.lvl)
+
 
     def status(self):
         super().status()

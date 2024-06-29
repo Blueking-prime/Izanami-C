@@ -62,3 +62,24 @@ def path(start: tuple[int, int], goal: tuple[int, int],
 
     return False
 
+def dialog_choice(prompt, choices: list = ['Yes', 'No']):
+    while True:
+        try:
+            print(prompt)
+            for i, j in enumerate(choices, 1):
+                print(f'{i} - {j}')
+            x = int(input('? '))
+            if x not in range(1, len(choices) + 1):
+                print('Invalid option!')
+                continue
+
+            if choices == ['Yes', 'No']:
+                if x == 1:
+                    return True
+                if x == 2:
+                    return False
+            else:
+                return x
+        except ValueError:
+            print('Invalid option!')
+            continue

@@ -1,6 +1,7 @@
 from ..base_character import Base_Character, parameters
 from ...Gear.base_gear import Base_Gear
 from ...Skills.player_skills import default_skills
+# from ...Maps.dungeon import Dungeon
 
 class Base_Player(Base_Character):
     def __init__(self, name: str, base_stats: list, lvl: int):
@@ -12,6 +13,7 @@ class Base_Player(Base_Character):
         self.mag = 0
         self.level_stats = []
         self.skills = default_skills
+        self.inventory = []
 
     @property
     def max_sp(self):
@@ -92,3 +94,4 @@ class Base_Player(Base_Character):
                 map.player_pos = (x + 1, y)
             case _:
                 pass
+        map.check_tile(self)

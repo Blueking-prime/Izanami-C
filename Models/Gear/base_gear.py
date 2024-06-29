@@ -1,9 +1,10 @@
 from .. import parameters
 
 class Base_Gear:
-    def __init__(self, stats: list, slot: str) -> None:
-        self.stats = stats
-        self.slot = slot
+    def __init__(self, data: dict) -> None:
+        self.name = data['name']
+        self.stats = data['stats']
+        self.slot = data['slot']
 
     @property
     def slot(self):
@@ -19,7 +20,7 @@ class Base_Gear:
         return self.__stats
 
     @stats.setter
-    def stats(self, value: list):
+    def stats(self, value: dict):
         self.__stats = dict.fromkeys(parameters.stats, 0)
-        if type(value) == list:
-            self.__stats.update(dict(zip(parameters.stats, value)))
+        if type(value) == dict:
+            self.__stats.update(value)

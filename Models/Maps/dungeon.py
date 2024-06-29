@@ -1,4 +1,7 @@
 from .. import utils
+from Scripts import battle
+from ..parameters import items, gear
+from ..Gear.base_gear import Base_Gear
 
 dungeon_sample = [
     ["█", "I", "-", "-", "-", "-", "█", "█"],
@@ -10,10 +13,11 @@ dungeon_sample = [
 
 
 class Dungeon:
-    def __init__(self, width = 8, height = 5, spawn_chance = 0.8, enemy_types = None) -> None:
+    def __init__(self, width = 8, height = 5, spawn_chance = 0.8, enemy_types: list = []) -> None:
         self.width = width
         self.height = height
         self.spawn_chance = spawn_chance
+        self.gear_drops = gear
 
         check = False
         while not check:
@@ -21,11 +25,12 @@ class Dungeon:
             check = self.verify_dungeon()
 
         self.player_pos = self.start
-        # self.enemy_types = enemy_types
+        self.enemy_types = enemy_types
 
     @property
     def player_pos(self):
         return self.__player_pos
+
     @player_pos.setter
     def player_pos(self, coords: tuple):
         x, y = coords
@@ -35,6 +40,7 @@ class Dungeon:
             print("There's a wall in the way")
         else:
             self.__player_pos = coords
+            self.display_dungeon()
 
 
     def generate_dungeon_layout(self):
@@ -52,23 +58,23 @@ class Dungeon:
             self.stop = utils.rand_coord(self.width, self.height)
         self.filled_coords.append(self.stop)
 
-        self.generate_treasures()
+        self.generate_treasure_tiles()
         self.generate_walls()
-        self.spawn_enemies()
+        self.spawn_enemies_floor()
 
         self.width += 1
         self.height += 1
 
 
-    def generate_treasures(self):
+    def generate_treasure_tiles(self):
         self.treasure_no = 1 + utils.rand_spread(0.2, 5)
-        self.treasures = []
+        self.treasure_tiles = []
         i = 0
         while i < self.treasure_no:
             coord = utils.rand_coord(self.width, self.height)
             if coord in self.filled_coords:
                 continue
-            self.treasures.append(coord)
+            self.treasure_tiles.append(coord)
             self.filled_coords.append(coord)
             i += 1
 
@@ -91,7 +97,7 @@ class Dungeon:
                             self.walls.append(coord)
                             self.filled_coords.append(coord)
 
-    def spawn_enemies(self):
+    def spawn_enemies_floor(self):
         enemy_no = utils.rand_spread(self.spawn_chance, self.width * self.height - len(self.filled_coords))
         self.enemy_no = enemy_no
         self.enemy_tiles = []
@@ -104,11 +110,60 @@ class Dungeon:
             self.filled_coords.append(coord)
             i += 1
 
+
+    def check_tile(self, player):
+        if self.player_pos in self.filled_coords:
+            if self.player_pos == self.stop:
+                self.exit_dungeon(player)
+            elif self.player_pos in self.treasure_tiles:
+                self.collect_treasure(player)
+            elif self.player_pos in self.enemy_tiles:
+                self.initiate_battle(player)
+            else:
+                pass
+
+    def exit_dungeon(self, player):
+        x = utils.dialog_choice("Do you want to leave the Dungeon?")
+        if x:
+            pass
+
+    def collect_treasure(self, player):
+        # if utils.rand_chance(0.5):
+        x = self.gear_drops
+        # else:
+            # x = items
+
+        index = utils.randint(0, len(x) - 1)
+        drop = Base_Gear(x[index])
+        player.inventory.append(drop)
+        print(f"You got {drop.name}!")
+
+        self.treasure_tiles.remove(self.player_pos)
+        self.filled_coords.remove(self.player_pos)
+
+        self.display_dungeon()
+
+
+    def initiate_battle(self, player):
+        n = 1 + utils.rand_spread(self.spawn_chance, 3)
+        enemy_list = []
+        for _ in range(n):
+            index = utils.randint(0, len(self.enemy_types) - 1)
+            enemy_list.append(self.enemy_types[index]())
+
+        battle.battle(player, enemy_list)
+
+        self.enemy_tiles.remove(self.player_pos)
+        self.filled_coords.remove(self.player_pos)
+
+        self.display_dungeon()
+
+
     def verify_dungeon(self):
         if not utils.path(self.start, self.stop, self.walls, self.width, self.height, []):
             return False
 
-        for i in self.treasures:
+        for i in self.treasure_tiles:
             if not utils.path(self.start, i, self.walls, self.width, self.height, []):
                 return False
         else:
@@ -127,7 +182,7 @@ class Dungeon:
         # Player_pos
         dungeon_map[self.player_pos[1]][self.player_pos[0]] = '*'
 
-        for i in self.treasures:
+        for i in self.treasure_tiles:
             dungeon_map[i[1]][i[0]] = 'T'
 
         for i in self.walls:
@@ -135,8 +190,3 @@ class Dungeon:
 
         for i in dungeon_map:
             print(i)
-
-
-
-if __name__ == '__main__':
-    pass

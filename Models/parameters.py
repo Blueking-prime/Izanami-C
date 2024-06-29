@@ -8,37 +8,44 @@ gear_parts = ['head', 'weapon', 'body']
 
 moves = ['Skills', 'Defend', 'Items', 'Run']
 
-gear = {
+items = {}
+
+gear = [
     # Head
-    'WoolCap': {
+    {
+        'name' : 'WoolCap',
         'slot': 'head',
         'stats': {
             'END': 3,
             'AGI': 2
         }
     },
-    'Turban': {
+    {
+        'name' : 'Turban',
         'slot': 'head',
         'stats': {
             'END': 2,
             'WIS': 2
         }
     },
-    'Helmet': {
+    {
+        'name' : 'Helmet',
         'slot': 'head',
         'stats': {
             'END': 3,
             'STR': 4
         }
     },
-    'Witch Hat': {
+    {
+        'name' : 'Witch Hat',
         'slot': 'head',
         'stats': {
             'END': 4,
             'WIS': 2
         }
     },
-    'Demon Horn': {
+    {
+        'name' : 'Demon Horn',
         'slot': 'head',
         'stats': {
             'END': 5,
@@ -46,33 +53,38 @@ gear = {
         }
     },
     # Body
-    'Shirt': {
+    {
+        'name' : 'Shirt',
         'slot': 'body',
         'stats': {
             'END': 5,
         }
     },
-    'Lithr. Armor': {
+    {
+        'name' : 'Lithr. Armor',
         'slot': 'body',
         'stats': {
             'END': 7,
             'AGI': -3
         }
     },
-    'Turtle Shell': {
+    {
+        'name' : 'Turtle Shell',
         'slot': 'body',
         'stats': {
             'END': 10,
         }
     },
-    'Ninja Armor': {
+    {
+        'name' : 'Ninja Armor',
         'slot': 'body',
         'stats': {
             'END': 6,
             'AGI': 4
         }
     },
-    'Devourer Chitin': {
+    {
+        'name' : 'Devourer Chitin',
         'slot': 'body',
         'stats': {
             'END': 10,
@@ -80,32 +92,37 @@ gear = {
         }
     },
     # Weapon
-    'Blood Sword': {
+    {
+        'name' : 'Blood Sword',
         'slot': 'weapon',
         'stats': {
             'STR': 5,
         }
     },
-    'Gigant Edge': {
+    {
+        'name' : 'Gigant Edge',
         'slot': 'weapon',
         'stats': {
             'STR': 7,
         }
     },
-    'Ninja Sword': {
+    {
+        'name' : 'Ninja Sword',
         'slot': 'weapon',
         'stats': {
             'STR': 5,
             'AGI': 4
         }
     },
-    'Ice Brand': {
+    {
+        'name' : 'Ice Brand',
         'slot': 'weapon',
         'stats': {
             'STR': 7,
         }
     },
-    'Excalihuh?': {
+    {
+        'name' : 'Excalihuh?',
         'slot': 'weapon',
         'stats': {
             'STR': 5,
@@ -113,5 +130,4 @@ gear = {
             'END': 5
         }
     },
-}
-
+]

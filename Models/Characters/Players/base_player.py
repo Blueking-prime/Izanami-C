@@ -99,3 +99,7 @@ class Base_Player(Base_Character):
             case _:
                 pass
         map.check_tile(self)
+
+    def die(self):
+        super().die()
+        # Add death screen and shit

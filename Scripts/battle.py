@@ -85,10 +85,6 @@ def battle(player: Base_Player, enemy_array: list[Base_Enemy]):
         #     # Each enemy runs their own predetermined battle script
         #     enemy.battle_script() #todo: implement enemy battle script
 
-        if not player.alive:
-            print('You Died')
-            return 1
-
         turncount += 1
 
         player.status()

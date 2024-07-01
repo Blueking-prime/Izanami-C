@@ -1,7 +1,8 @@
 from .. import utils
 from Scripts import battle
-from ..parameters import items, gear
-from ..Gear.base_gear import Base_Gear
+from ..parameters import gear, items
+from ..Equipment.base_gear import Base_Gear
+from ..Equipment.base_item import Base_Item
 
 dungeon_sample = [
     ["█", "I", "-", "-", "-", "-", "█", "█"],
@@ -13,11 +14,15 @@ dungeon_sample = [
 
 
 class Dungeon:
-    def __init__(self, width = 8, height = 5, spawn_chance = 0.8, enemy_types: list = []) -> None:
+    def __init__(self, width = 8, height = 5,
+                 spawn_chance = 0.8, enemy_types: list = []
+                # , gear_drops: list = [], item_drops: list = []
+                 ) -> None:
         self.width = width
         self.height = height
         self.spawn_chance = spawn_chance
         self.gear_drops = gear
+        self.item_drops = items
 
         check = False
         while not check:
@@ -128,13 +133,15 @@ class Dungeon:
             pass
 
     def collect_treasure(self, player):
-        # if utils.rand_chance(0.5):
-        x = self.gear_drops
-        # else:
-            # x = items
+        if utils.rand_chance(0.5):
+            x = self.gear_drops
+            index = utils.randint(0, len(x) - 1)
+            drop = Base_Gear(x[index])
+        else:
+            x = self.item_drops
+            index = utils.randint(0, len(x) - 1)
+            drop = Base_Item(x[index])
 
-        index = utils.randint(0, len(x) - 1)
-        drop = Base_Gear(x[index])
         player.inventory.append(drop)
         print(f"You got {drop.name}!")
 

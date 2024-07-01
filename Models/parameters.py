@@ -6,9 +6,20 @@ traits = ['Fire', 'Wind', 'Water', 'Light']
 
 gear_parts = ['head', 'weapon', 'body']
 
-moves = ['Skills', 'Defend', 'Items', 'Run']
+moves = ['Run', 'Defend', 'Skills', 'Items']
 
-items = {}
+items = [
+    {
+        'name': 'Leaf',
+        'type': 'heal',
+        'value': 20
+    },
+    {
+        'name': 'Razor',
+        'type': 'damage',
+        'value': 20
+    }
+]
 
 gear = [
     # Head

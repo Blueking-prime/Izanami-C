@@ -63,6 +63,8 @@ def path(start: tuple[int, int], goal: tuple[int, int],
     return False
 
 def dialog_choice(prompt, choices: list = ['Yes', 'No']):
+    if len(choices) == 0:
+        return -1
     while True:
         try:
             print(prompt)

@@ -5,6 +5,7 @@ class Base_Gear:
         self.name = data['name']
         self.stats = data['stats']
         self.slot = data['slot']
+        self.desc = data.get('desc', None)
 
     @property
     def slot(self):

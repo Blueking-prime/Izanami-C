@@ -1,7 +1,7 @@
 from ..base_character import Base_Character, parameters
-from ...Gear.base_gear import Base_Gear
+from ...Equipment.base_gear import Base_Gear
+from ...Equipment.base_item import Base_Item
 from ...Skills.player_skills import default_skills
-# from ...Maps.dungeon import Dungeon
 
 class Base_Player(Base_Character):
     def __init__(self, name: str, base_stats: list, lvl: int):
@@ -21,15 +21,19 @@ class Base_Player(Base_Character):
 
     @property
     def items(self):
-        return self.__items
+        return [x for x in self.inventory if isinstance(x, Base_Item)]
 
-    @items.setter
-    def items(self, items: list):
-        if not self.__items:
-           self.__items = []
-        # todo: implement item support
-        self.__items += [x for x in items if isinstance(x, None) and x not in self.__items]
+    def use_items(self, item: str, target):
+        for x in self.items:
+            if x.name == item:
+                self.inventory.remove(x)
+                x.use(target)
+                break
 
+    def act(self, action: str, inst: str, target):
+        super().act(action, inst, target)
+        if action == 'Items':
+            self.use_items(inst, target)
 
     def equip_gear(self, item: Base_Gear):
         if isinstance(item, Base_Gear):

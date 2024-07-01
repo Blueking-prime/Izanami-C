@@ -1,6 +1,7 @@
 from Models.Characters.Players.player_models import Ronin
 from Models.Characters.Enemies.enemy_models import Goblin
-from Models.Gear.base_gear import Base_Gear
+from Models.Equipment.base_gear import Base_Gear
+from Models.Equipment.base_item import Base_Item
 from Models.Skills.base_skill import Offensive_Skill, Heal_Skill
 from Models.Maps.dungeon import Dungeon
 from Models.parameters import gear
@@ -36,6 +37,21 @@ wind = Offensive_Skill('Wind', 'wind', ['INT', 'WIS'])
 heal = Heal_Skill('Heal', ['GUI', 'WIS'])
 
 dummy.skills = [fire, wind, heal]
+
+leaf = Base_Item({
+    'name': 'Leaf',
+    'type': 'heal',
+    'value': 20
+})
+
+razor = Base_Item({
+    'name': 'Razor',
+    'type': 'damage',
+    'value': 20
+})
+
+
+dummy.inventory += [leaf, razor]
 
 while True:
     dun = Dungeon(enemy_types=[Goblin])

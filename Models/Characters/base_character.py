@@ -41,29 +41,14 @@ class Base_Character:
 
 
     def act(self, action: str, inst: str, target):
-        '''_summary_
+        if action == 'Skills':
+            if self.status_effect == 'Sealed':
+                print(f"{self.name} can't use skills!")
+                return
+            self.use_skill(inst, target)
 
-        Args:
-            action (str): type of action to be performed
-            inst (str): specific thing to be done
-            target (Base_Character): target of the action
 
-        actions:
-        1 - Item
-        2 - Skill
-        '''
-
-        if self.status_effect == 'Sealed':
-            print('You are stunned!')
-            return
-
-        match action:
-            case 'Items':
-                pass
-            case 'Skills':
-                self.use_skill(inst, target)
-
-    def use_skill(self, skill, target):
+    def use_skill(self, skill: str, target):
         for x in self.skills:
             if x.name == skill:
                 x.action(self, target)

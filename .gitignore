@@ -4,8 +4,8 @@ Models/Characters/__pycache__/base_character.cpython-312.pyc
 Models/Characters/__pycache__/base_player.cpython-312.pyc
 Models/Characters/Players/__pycache__/__init__.cpython-312.pyc
 Models/Characters/Players/__pycache__/base_player.cpython-312.pyc
-Models/Gear/__pycache__/__init__.cpython-312.pyc
-Models/Gear/__pycache__/base_gear.cpython-312.pyc
+Models/Equipment/__pycache__/__init__.cpython-312.pyc
+Models/Equipment/__pycache__/base_gear.cpython-312.pyc
 Models/Skills/__pycache__/__init__.cpython-312.pyc
 Models/Skills/__pycache__/base_skill.cpython-312.pyc
 Models/__pycache__/parameters.cpython-312.pyc
@@ -18,3 +18,4 @@ Models/Characters/Enemies/__pycache__/enemy_models.cpython-312.pyc
 Models/Characters/Players/__pycache__/player_models.cpython-312.pyc
 Scripts/__pycache__/battle.cpython-312.pyc
 Models/Skills/__pycache__/player_skills.cpython-312.pyc
+Models/Equipment/__pycache__/base_item.cpython-312.pyc

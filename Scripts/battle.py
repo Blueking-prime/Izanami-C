@@ -52,16 +52,23 @@ def battle(player: Base_Player, enemy_array: list[Base_Enemy]):
                 case _: # Skills, Items
                     attr = player.__getattribute__(moves[action].lower())
                     inst = dialog_choice(f'What {moves[action]} do you want to use?', [i.name for i in attr])
-                    if inst == -1:
-                        print('None found')
-                        continue
-                    inst_name = attr[inst - 1].name
+                    match inst:
+                        case 0:
+                            continue
+                        case -1:
+                            print('None found')
+                            continue
+                        case _:
+                            inst_name = attr[inst - 1].name
 
                     target_choice = dialog_choice('Who do you want to target?', [player.name, *[i.name for i in enemy_array]])
-                    if target_choice == 1:
-                        target = player
-                    else:
-                        target = enemy_array[target_choice - 2]
+                    match target_choice:
+                        case 0:
+                            continue
+                        case 1:
+                            target = player
+                        case _:
+                            target = enemy_array[target_choice - 2]
 
                     print('----------------------')
                     player.act(moves[action], inst_name, target)

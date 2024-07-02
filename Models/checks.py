@@ -1,6 +1,6 @@
 dialogue_checks = {
     "dungLevelCrowleycheck": 0,
-    "dungLevelKobancheck": False,
+    "dungLevelKobancheck": 0,
     "kobanBreak": False,
     "kobamaoucheck": False,
     "kobaguidecheck": False,

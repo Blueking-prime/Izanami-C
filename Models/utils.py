@@ -89,3 +89,24 @@ def dialog_choice(prompt, choices: list = ['Yes', 'No'], back = True):
         except ValueError:
             print('Invalid option!')
             continue
+
+def dialog_choice_shop(prompt, choices: dict[str, int]) -> str:
+    if len(choices) == 0:
+        return -1
+    while True:
+        try:
+            print(prompt)
+            print('S/N - Name : Cost')
+            for i, j in enumerate(choices.keys(), 1):
+                print(f'{i} - {j} : {choices[j]}')
+            print('0 - back')
+
+            x = int(input('? '))
+            if x not in range(0, len(choices) + 1):
+                print('Invalid option!')
+                continue
+
+            return list(choices.keys())[x - 1]
+        except ValueError:
+            print('Invalid option!')
+            continue

@@ -38,8 +38,30 @@ class Base_Player(Base_Character):
     def equip_gear(self, item: Base_Gear):
         if isinstance(item, Base_Gear):
             slot = item.slot
+            if self.gear[slot]:
+                self.inventory.append(self.gear[slot])
             self.gear[slot] = item
             self.update_stats()
+
+    def display_inventory(self):
+        item_dict = {}
+        weapon_dict = {}
+        for i in self.inventory:
+            if isinstance(i, Base_Item):
+                try:
+                    item_dict[i.name] += 1
+                except KeyError:
+                    item_dict[i.name] = 1
+            elif isinstance(i, Base_Gear):
+                weapon_dict[i.name] = i.stats
+            else:
+                print(i.name)
+
+        for i in weapon_dict.keys():
+            print(f'{i} Stats: {weapon_dict[i]}')
+
+        for i in item_dict.keys():
+            print(f'{i} x{item_dict[i]}')
 
     def update_stats(self):
         stats = parameters.stats

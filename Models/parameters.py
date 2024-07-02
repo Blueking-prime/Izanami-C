@@ -1,3 +1,5 @@
+characters = ['Farmer', 'Destitute', 'Doctor', 'Ronin', 'Shinobi']
+
 stats = ["STR", "INT", "WIS", "END", "GUI", "AGI"]
 
 status_ailments = ['EnExhaust', 'Sealed', 'Toxin', 'Exhausted', 'Stunned', 'Death']
@@ -7,6 +9,57 @@ traits = ['Fire', 'Wind', 'Water', 'Light']
 gear_parts = ['head', 'weapon', 'body']
 
 moves = ['Run', 'Defend', 'Skills', 'Items']
+
+inventory = {
+    'Medicine': 5,
+    'Tonic': 2,
+    'StaminaPill': 5,
+    'SenchaTea': 0,
+    'FiveFingerSeal': 2,
+    'Antidote': 0,
+    'EnergyCandy': 0,
+    'Panacea': 0,
+    'GreenHerbs': 2,
+    'RedHerbs': 2,
+    'BlueHerbs': 2,
+}
+
+ninjaTools = {
+    'Shuriken': 3,
+    'PaperBomb': 3,
+    'FumaShuriken': 3,
+}
+
+equipment = {
+    'Turban': 1,
+    'Shirt': 1,
+    'ShortSword': 1,
+}
+
+smithy = {
+    # name: price
+    'Turban': 65,
+    'WoolCap': 50,
+    'GoldCrown': 35,
+    'BloodiedDagger': 100,
+    'Lthr.Armor': 125,
+}
+
+apothy = {
+    # name: price
+    'Medicine': 25,
+    'Tonic': 150,
+    'StaminaPill': 50,
+    'SenchaTea': 100,
+    'FiveFingerSeal': 75,
+    'Antidote': 75,
+    'EnergyCandy': 75,
+    'Panacea': 1000,
+    'GreenHerbs': 50,
+    'RedHerbs': 50,
+    'BlueHerbs': 50,
+}
+
 
 items = [
     {

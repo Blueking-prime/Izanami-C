@@ -33,11 +33,12 @@ def battle(player: Base_Player, enemy_array: list[Base_Enemy]):
 
     while True:
         print('TURN: ', turncount)
+        player.DEF = 1
         ########################## PLAYER TURN ############################
         print('---------------PLAYER TURN----------------')
         if player.status_effect != 'Stunned':
             # Checks for valid input
-            action = dialog_choice('What do you want to do?', moves) - 1
+            action = dialog_choice('What do you want to do?', moves, back=False) - 1
 
             match action:
                 case 0: # Run
@@ -71,10 +72,15 @@ def battle(player: Base_Player, enemy_array: list[Base_Enemy]):
                             target = enemy_array[target_choice - 2]
 
                     print('----------------------')
-                    player.act(moves[action], inst_name, target)
+                    x = player.act(moves[action], inst_name, target)
+                    print(x)
+                    if not x:
+                        continue
                     print('----------------------')
         else:
             print("You are stunned, you can't move")
+
+        player.ATK = 1
 
         for enemy in enemy_array:
             if enemy.status_effect == 'Death':
@@ -93,6 +99,7 @@ def battle(player: Base_Player, enemy_array: list[Base_Enemy]):
         #     enemy.battle_script() #todo: implement enemy battle script
 
         turncount += 1
+        player.restore()
 
         player.status()
         show_status(player)
@@ -104,6 +111,7 @@ def battle(player: Base_Player, enemy_array: list[Base_Enemy]):
     player.status_effect = None
     player.ATK = 1
     player.DEF = 1
+    player.sp = player.max_sp
 
     return 0
 

@@ -20,3 +20,6 @@ Scripts/__pycache__/battle.cpython-312.pyc
 Models/Skills/__pycache__/player_skills.cpython-312.pyc
 Models/Equipment/__pycache__/base_item.cpython-312.pyc
 .vscode/settings.json
+Models/__pycache__/checks.cpython-312.pyc
+Scripts/__pycache__/dialogue.cpython-312.pyc
+Models/Maps/__pycache__/town.cpython-312.pyc

@@ -47,6 +47,11 @@ class Dungeon:
             self.__player_pos = coords
             self.display_dungeon()
 
+    def main(self, player):
+        print('-------------------------------------')
+        while True:
+            x = input('direction? ')
+            player.move(self, x)
 
     def generate_dungeon_layout(self):
         self.width -= 1

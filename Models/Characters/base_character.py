@@ -28,7 +28,7 @@ class Base_Character:
         return (self.base_stats['END'] * 10) + (self.base_stats['WIS'] * 3) + (self.lvl * 15)
 
     @property
-    def skills(self):
+    def skills(self) -> list[Base_Skill]:
         return self.__skills
 
     @skills.setter
@@ -44,14 +44,15 @@ class Base_Character:
         if action == 'Skills':
             if self.status_effect == 'Sealed':
                 print(f"{self.name} can't use skills!")
-                return
-            self.use_skill(inst, target)
+                return False
+            return self.use_skill(inst, target)
 
 
     def use_skill(self, skill: str, target):
         for x in self.skills:
             if x.name == skill:
-                x.action(self, target)
+                return x.action(self, target)
+        return False
 
     def damage(self, value: float):
         value /= self.DEF

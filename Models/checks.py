@@ -10,6 +10,10 @@ dialogue_checks = {
     "endWhiteCheck": False
 }
 
+demon_training = {
+    "Goblin": 15,
+    "Oni": 10
+}
 
 kobaneko_active_list=[
     "I need to find it… I need to find the sword…",

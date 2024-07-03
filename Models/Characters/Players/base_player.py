@@ -23,17 +23,25 @@ class Base_Player(Base_Character):
     def items(self):
         return [x for x in self.inventory if isinstance(x, Base_Item)]
 
+    def restore(self):
+        self.sp += self.stats['END'] * 3
+        if self.sp > self.max_sp:
+            self.sp = self.max_sp
+
     def use_items(self, item: str, target):
         for x in self.items:
             if x.name == item:
                 self.inventory.remove(x)
                 x.use(target)
-                break
+                return True
+        return False
 
     def act(self, action: str, inst: str, target):
-        super().act(action, inst, target)
+        x = super().act(action, inst, target)
+        if x:
+            return x
         if action == 'Items':
-            self.use_items(inst, target)
+            return self.use_items(inst, target)
 
     def equip_gear(self, item: Base_Gear):
         if isinstance(item, Base_Gear):
@@ -104,6 +112,8 @@ class Base_Player(Base_Character):
 
     def status(self):
         super().status()
+        # if self.sp < 0:
+        #     self.status_effect = exhausted
         if self.status_effect == 'EnExhaust':
             self.sp -= self.max_sp / 4
 

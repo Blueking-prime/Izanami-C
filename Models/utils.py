@@ -62,7 +62,7 @@ def path(start: tuple[int, int], goal: tuple[int, int],
 
     return False
 
-def dialog_choice(prompt, choices: list = ['Yes', 'No'], back = True):
+def dialog_choice(prompt: str, choices: list = ['Yes', 'No'], back = True):
     low_limit = 1
     if len(choices) == 0:
         return -1
@@ -90,7 +90,7 @@ def dialog_choice(prompt, choices: list = ['Yes', 'No'], back = True):
             print('Invalid option!')
             continue
 
-def dialog_choice_shop(prompt, choices: dict[str, int]) -> str:
+def dialog_choice_shop(prompt: str, choices: dict[str, int]):
     if len(choices) == 0:
         return -1
     while True:
@@ -105,6 +105,9 @@ def dialog_choice_shop(prompt, choices: dict[str, int]) -> str:
             if x not in range(0, len(choices) + 1):
                 print('Invalid option!')
                 continue
+
+            if x == 0:
+                return -1
 
             return list(choices.keys())[x - 1]
         except ValueError:

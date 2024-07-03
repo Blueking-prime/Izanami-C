@@ -2,7 +2,7 @@ from Models.utils import dialog_choice
 from Models import checks
 from Models.Characters.Players.base_player import Base_Player
 from Models.Characters.Enemies import enemy_models
-from battle import battle
+from .battle import battle
 
 
 def tutorial():

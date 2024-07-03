@@ -21,7 +21,12 @@ class Base_Skill:
 
     def action(self, obj, target):
         if obj.status_effect == 'Exhausted':
-            return
+            return False
+
+        if obj.sp <= 0:
+            print('Out of SP')
+            return False
+        obj.sp -= self.cost
 
         stat_total = 0
 
@@ -53,6 +58,8 @@ class Base_Skill:
                 print('Miss!')
         else:
             target.status_effect = self.status_effect
+
+        return True
 
 
 class Offensive_Skill(Base_Skill):

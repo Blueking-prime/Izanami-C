@@ -1,14 +1,18 @@
 from Models.Characters.Players.player_models import Ronin
-from Models.Characters.Enemies.enemy_models import Goblin
+from Models.Characters.Enemies.enemy_models import Goblin, Oni
 from Models.Equipment.base_gear import Base_Gear
 from Models.Equipment.base_item import Base_Item
 from Models.Skills.base_skill import Offensive_Skill, Heal_Skill
 from Models.Maps.dungeon import Dungeon
+from Models.Maps.town import Town
 from Models.parameters import gear
+from Models.utils import dialog_choice_shop
+from Models.parameters import inventory
+from Scripts.battle import battle
 
 dummy = Ronin('mark')
 sword = Base_Gear(gear[-1])
-enemy1 = Goblin()
+enemy1 = Oni()
 enemy2 = Goblin()
 
 print(sword.name)
@@ -50,20 +54,22 @@ razor = Base_Item({
     'value': 20
 })
 
-
 dummy.inventory += [leaf, razor]
+dummy.gold = 1000
 
-while True:
-    dun = Dungeon(enemy_types=[Goblin])
-    print(dun.__dict__)
-    dun.display_dungeon()
+battle(dummy, [enemy1, enemy2])
 
-    print('-------------------------------------')
-    while True:
-        x = input('direction? ')
-        if x == 'res':
-            break
-        if x == 'close':
-            print(dummy.inventory)
-            exit()
-        dummy.move(dun, x)
+# while True:
+#     dun = Dungeon(enemy_types=[Goblin])
+#     print(dun.__dict__)
+#     dun.display_dungeon()
+
+#     print('-------------------------------------')
+#     while True:
+#         x = input('direction? ')
+#         if x == 'res':
+#             break
+#         if x == 'close':
+#             print(dummy.inventory)
+#             exit()
+#         dummy.move(dun, x)

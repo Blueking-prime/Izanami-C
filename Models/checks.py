@@ -20,7 +20,14 @@ kobaneko_active_list=[
     "I want to grow stronger-",
     "Uhh… Tourism?",
     "Why… do you talk like that…",
-    "Are you guys humans…? Or?"
+    "Are you guys humans…? Or?",
+    None,
+    None,
+    None,
+    None,
+    None,
+    None,
+    None
 ]
 
 crowley_active_list=[
@@ -29,7 +36,11 @@ crowley_active_list=[
     "What's a Demonitorium?",
     "You look just like a regular person!",
     "Do you have any tips for me in combat, sir?",
-    "Bye"
+    None,
+    None,
+    None,
+    None,
+    None,
 ]
 
 white_active_list = [
@@ -43,8 +54,10 @@ white_active_list = [
 
 izanagi_active_list = [
     "Who are you",
+    None,
     "What do you want",
-    "What happened to White"
+    "What happened to White",
+    None
 ]
 
 talk_arr = []

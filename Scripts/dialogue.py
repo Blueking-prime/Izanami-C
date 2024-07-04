@@ -108,7 +108,7 @@ def minamoto(player: Base_Player):
             input("White: You have my permission to rise once again.")
 
             checks.dialogue_checks['endWhiteCheck'] = True
-            checks.crowley_active_list += ["I met a person name White"]
+            checks.crowley_active_list[5] = "I met a person name White"
             checks.talk_arr += ["White"]
         case 3:
             input("???: ...")
@@ -120,14 +120,14 @@ def minamoto(player: Base_Player):
 
 def crowley():
     if checks.dungeon_level > 1 and checks.dialogue_checks['dungLevelCrowleycheck'] == 0:
-            checks.dialogue_checks['dungLevelCrowleycheck']=1
-            checks.crowley_active_list +=("I’ve cleared the first level of the dungeon")
+            checks.dialogue_checks['dungLevelCrowleycheck'] = 1
+            checks.crowley_active_list[7] = "I’ve cleared the first level of the dungeon"
     if checks.dungeon_level > 3 and checks.dialogue_checks['dungLevelCrowleycheck'] == 1:
-            checks.dialogue_checks['dungLevelCrowleycheck']=2
-            checks.crowley_active_list +=("I’ve cleared the third floor")
+            checks.dialogue_checks['dungLevelCrowleycheck'] = 2
+            checks.crowley_active_list[8] = "I’ve cleared the third floor"
     if checks.dungeon_level > 4 and checks.dialogue_checks['dungLevelCrowleycheck'] == 2:
-            checks.dialogue_checks['dungLevelCrowleycheck']=3
-            checks.crowley_active_list +=("I’ve cleared the fourth floor")
+            checks.dialogue_checks['dungLevelCrowleycheck'] = 3
+            checks.crowley_active_list[9] = "I’ve cleared the fourth floor"
 
     while True:
         response = dialog_choice("{May I be of assistance?}", checks.crowley_active_list, back=False)
@@ -171,7 +171,7 @@ def crowley():
                 input("Crowley: Many have come before you and many have fallen. But I see a glint in your eye. See, some benefactors and I have strong vested interest in that blade, and we’re looking for associates to help us attain it. Get through the next two layers and come back to me.")
                 input("Crowley: I'm sure that mangy grimalkin has told you a lot as well. Do what you wish but be wary of vesting trust in a demon.")
                 if not checks.dialogue_checks['kobaguidecheck']:
-                    checks.kobaneko_active_list += ["Crowley gave me some guidance."]
+                    checks.kobaneko_active_list[9] = "Crowley gave me some guidance."
                     checks.dialogue_checks['kobaguidecheck'] = True
                 continue
             case 9:
@@ -200,7 +200,7 @@ def kobaneko():
         input("Kobaneko: You and I have nothing to discuss. Leave.")
     if checks.dungeon_level > 1 and checks.dialogue_checks['dungLevelKobancheck'] == 0:
         checks.dialogue_checks['dungLevelKobancheck'] = 1
-        checks.kobaneko_active_list += ["I’ve been to the dungeon"]
+        checks.kobaneko_active_list[7] = "I’ve been to the dungeon"
     if checks.dungeon_level > 3 and checks.dialogue_checks['dungLevelKobancheck'] == 1:
         checks.dialogue_checks['dungLevelKobancheck'] = 2
     if checks.dialogue_checks['kobanBreak']:
@@ -212,7 +212,7 @@ def kobaneko():
                 input("Kobaneko: [she leans in awfully close] You humans are so deliciously unpurrrr-dictable. You wish to throw away all the comforts of the world above and dig your way into hell for some flimsy sword?")
                 input("Kobaneko: If the unnamed katana is what you seek then you must fall even deeper than you already have. Into a place so steeped in darkness that no man returns unchanged…")
                 input("Kobaneko: [her expression reverts back to normal] Nya-sk Dr.Crowley at the Demonitorium for more info!")
-                checks.kobaneko_active_list += ["Be seeing you"]
+                checks.kobaneko_active_list[11] = ["Be seeing you"]
                 continue
             case 2:
                 input("Kobaneko: Nya! If strength is what you seek then go over to the demonitorium and slaughter to your hearts content. Nyihihi!")
@@ -231,8 +231,8 @@ def kobaneko():
                 input("Kobaneko: Ah the cycle of life is so beautiful!")
                 input("Kobaneko: Of course, some of us are half-demons! We even allow regular demons if they agree to behave.")
                 input("Kobaneko: Ichor is welcoming to all who are willing to abide by its absolute NO VIOLENCE clause!")
-                checks.kobaneko_active_list += ["Seithr? What’s that"]
-                checks.kobaneko_active_list += ["No Violence clause?"]
+                checks.kobaneko_active_list[5] = "Seithr? What’s that"
+                checks.kobaneko_active_list[6] = "No Violence clause?"
                 continue
             case 6:
                 input("Kobaneko: It’s all around nya’s world! It’s the wonderful clay of creation!")
@@ -247,8 +247,8 @@ def kobaneko():
                 input("Kobaneko: Oh don’t be coy, out there it’s kill or be killed. It’s in the nature of this world for us to tear ourselves apart.")
                 input("Kobaneko: Well, truth be told, It didn't always use to be like that.")
                 if not checks.dialogue_checks['kobamaoucheck']:
-                    checks.kobaneko_active_list += ["How was it before."]
-                    checks.crowley_active_list += ["Kobaneko mentioned a demon king?"]
+                    checks.kobaneko_active_list[8] = "How was it before."
+                    checks.crowley_active_list[6] = "Kobaneko mentioned a demon king?"
                     checks.dialogue_checks['kobamaoucheck'] = True
                 continue
             case 9:
@@ -420,11 +420,11 @@ def izanagi(end):
                 continue
             case 3:
                 input("Izanagi-no-Mikoto: That power you wield in your hand is a weapon of my crafting. A spear of light meant to keep my wife from being resurrected.")
-                checks.izanagi_active_list += ["What happens if she resurrects?"]
+                checks.izanagi_active_list[1] = "What happens if she resurrects?"
                 continue
             case 4:
                 input("Izanagi-no-Mikoto: You refer to the boy you bested in combat? He was an aid that has served its purpose. A role that has been opened anew")
-                checks.izanagi_active_list += ["Purpose?"]
+                checks.izanagi_active_list[4] = "Purpose?"
                 continue
             case 5:
                 input("Izanagi-no-Mikoto: Yes. The only way for her to be free is for a powerful enough Daimaou to break the seals I placed on her almost a millennia ago.")

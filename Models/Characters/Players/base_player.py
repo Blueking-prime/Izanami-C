@@ -10,6 +10,7 @@ class Base_Player(Base_Character):
         self.gear = dict.fromkeys(parameters.gear_parts)
         self.exp = 0
         self.gold = 0
+        self.level_up_exp = 50 * (2 ** self.lvl)
         self.mag = 0
         self.level_stats = []
         self.skills = default_skills

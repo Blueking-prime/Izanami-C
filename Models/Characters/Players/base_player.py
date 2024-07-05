@@ -135,4 +135,6 @@ class Base_Player(Base_Character):
 
     def die(self):
         super().die()
+        print('And so you fall, your journey never to be completed')
+        exit()
         # Add death screen and shit

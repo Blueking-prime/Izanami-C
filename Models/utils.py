@@ -97,6 +97,7 @@ def dialog_choice(prompt: str, choices: list[str] = ['Yes', 'No'], back = True):
         return -1
     while True:
         try:
+            print('')
             print(prompt)
 
             structured_choices = {j: i for i, j in enumerate(choices, 1)}
@@ -136,6 +137,7 @@ def dialog_choice_shop(prompt: str, choices: dict[str, int]):
         return -1
     while True:
         try:
+            print('')
             print(prompt)
             print('S/N - Name : Cost')
             for i, j in enumerate(choices.keys(), 1):

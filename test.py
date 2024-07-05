@@ -1,3 +1,4 @@
+from Models import checks
 from Models.Characters.Players.player_models import Ronin
 from Models.Characters.Enemies.enemy_models import Goblin, Oni
 from Models.Equipment.base_gear import Base_Gear
@@ -60,19 +61,19 @@ dummy.inventory += [leaf, razor]
 dummy.gold = 1000
 
 # print(dummy.__dict__)
-# save(dummy)
-# dummy = load()
+# save(dummy, checks)
+dummy, check_d = load(checks)
 # if dummy:
 #     dummy.update_stats()
 #     print(dummy.__dict__)
 #     print(dummy.inventory)
 
-stats_ = ["STR", "INT", "WIS", None, "END", "GUI", "AGI"]
-while True:
-    x = dialog_choice("Choose", stats_)
-    if x < 0:
-        break
-    print(stats_[x - 1])
+# stats_ = ["STR", "INT", "WIS", None, "END", "GUI", "AGI"]
+# while True:
+#     x = dialog_choice("Choose", stats_)
+#     if x < 0:
+#         break
+#     print(stats_[x - 1])
 
 
 # battle(dummy, [enemy1, enemy2])

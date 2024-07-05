@@ -4,7 +4,7 @@ from .. import parameters
 from ..utils import dialog_choice, dialog_choice_shop
 from ..Characters.Players.base_player import Base_Player, Base_Gear, Base_Item
 from ..Characters.Enemies import enemy_models
-from Scripts import dialogue
+from Scripts import dialogue, save
 from Scripts.battle import battle
 
 
@@ -236,8 +236,10 @@ class Town:
                         except KeyError:
                             break
                 case 3:
-                    # save
-                    pass
+                    print('Unavailable')
+                case 4:
+                    save.save(player)
+                    print('Progress saved!')
                 case _:
                     break
         return

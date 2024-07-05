@@ -1,8 +1,9 @@
-from Models.utils import dialog_choice
+from .battle import battle
+from .save import save
 from Models import checks
+from Models.utils import dialog_choice
 from Models.Characters.Players.base_player import Base_Player
 from Models.Characters.Enemies import enemy_models
-from .battle import battle
 
 
 def tutorial():
@@ -74,7 +75,7 @@ def minamoto(player: Base_Player):
     input("But deep in the back of your mind's eye, you see something. An impossibly bright light.")
     input("So incandescent that merely observing it seems to blow back the darkness out of reach.")
 
-    choice = dialog_choice('', ["Reach Out" "Give Up"], back=False)
+    choice = dialog_choice('', ["Reach Out", "Give Up"], back=False)
     match choice:
         case 1:
             input("As you reach closer and closer into the light, a figure manifests.")
@@ -121,13 +122,13 @@ def minamoto(player: Base_Player):
 def crowley():
     if checks.dungeon_level > 1 and checks.dialogue_checks['dungLevelCrowleycheck'] == 0:
             checks.dialogue_checks['dungLevelCrowleycheck'] = 1
-            checks.crowley_active_list[7] = "I’ve cleared the first level of the dungeon"
+            checks.crowley_active_list[7] = "I've cleared the first level of the dungeon"
     if checks.dungeon_level > 3 and checks.dialogue_checks['dungLevelCrowleycheck'] == 1:
             checks.dialogue_checks['dungLevelCrowleycheck'] = 2
-            checks.crowley_active_list[8] = "I’ve cleared the third floor"
+            checks.crowley_active_list[8] = "I've cleared the third floor"
     if checks.dungeon_level > 4 and checks.dialogue_checks['dungLevelCrowleycheck'] == 2:
             checks.dialogue_checks['dungLevelCrowleycheck'] = 3
-            checks.crowley_active_list[9] = "I’ve cleared the fourth floor"
+            checks.crowley_active_list[9] = "I've cleared the fourth floor"
 
     while True:
         response = dialog_choice("{May I be of assistance?}", checks.crowley_active_list, back=False)
@@ -138,26 +139,26 @@ def crowley():
                 input("Crowley: But do you even know what the blade is? What it can do?")
                 continue
             case 2:
-                input("Crowley: [he leers at you analytically, then makes a flippant hand gesture] Get to the second floor of the dungeon, then I’ll talk to you.")
+                input("Crowley: [he leers at you analytically, then makes a flippant hand gesture] Get to the second floor of the dungeon, then I'll talk to you.")
                 continue
             case 3:
-                input("Crowley: We sell demons and we sell Magic Element, my child. If you need fuel for your magic, or you need to cut something down to size, I’m the man to meet.")
+                input("Crowley: We sell demons and we sell Magic Element, my child. If you need fuel for your magic, or you need to cut something down to size, I'm the man to meet.")
                 continue
             case 4:
-                input("Crowley: Hmmm? Oh I have a charm against the poisons of the demonic world. I wouldn’t dare breath the filth of these creatures")
+                input("Crowley: Hmmm? Oh I have a charm against the poisons of the demonic world. I wouldn't dare breath the filth of these creatures")
                 continue
             case 5:
                 input("Crowley: If they hit you, hit them back.")
-                input("Crowley: Don’t run out of stamina.")
-                input("Crowley: If the enemy looks like it’s about to swing something nasty, defend yourself. The rest you’ll learn on the field.")
+                input("Crowley: Don't run out of stamina.")
+                input("Crowley: If the enemy looks like it's about to swing something nasty, defend yourself. The rest you'll learn on the field.")
                 input("Crowley: Ah, and if you run into the Great Devourer out there run like your life depends on it.")
                 continue
             case 6:
-                input("Crowley: Hmm. You came back from the brink of death? Are you sure you weren’t hallucinating from pain?")
-                input("Crowley: A person named White? Pure light? Doesn’t sound like any demonic phenotypes I know. This is purely conjecture but it’s likely what you met was a Phantom.")
+                input("Crowley: Hmm. You came back from the brink of death? Are you sure you weren't hallucinating from pain?")
+                input("Crowley: A person named White? Pure light? Doesn't sound like any demonic phenotypes I know. This is purely conjecture but it's likely what you met was a Phantom.")
                 input("Crowley: An apparition that is born when a particularly stubborn soul clings onto nearby Seithr.")
-                input("Crowley: It’s said only those on the brink of death have the ability to even see one, so perhaps there is merit to your story. [he laughs a bit]")
-                input("Crowley: Keep me updated on this ‘White’ if you can.")
+                input("Crowley: It's said only those on the brink of death have the ability to even see one, so perhaps there is merit to your story. [he laughs a bit]")
+                input("Crowley: Keep me updated on this 'White' if you can.")
                 continue
             case 7:
                 input("Crowley: Ahh. Daimaou Kagutsuchi.")
@@ -167,8 +168,8 @@ def crowley():
                 input("Crowley: It is said he was eventually felled by Lord Minamoto-no-Raiko.")
                 continue
             case 8:
-                input("Crowley: I’m impressed. Sure, I’ll tell you. The goddess slumbers deep within the earth, and the blade sleeps even deeper within her undying corpse. You must crawl and fight to the lowest level to obtain it.")
-                input("Crowley: Many have come before you and many have fallen. But I see a glint in your eye. See, some benefactors and I have strong vested interest in that blade, and we’re looking for associates to help us attain it. Get through the next two layers and come back to me.")
+                input("Crowley: I'm impressed. Sure, I'll tell you. The goddess slumbers deep within the earth, and the blade sleeps even deeper within her undying corpse. You must crawl and fight to the lowest level to obtain it.")
+                input("Crowley: Many have come before you and many have fallen. But I see a glint in your eye. See, some benefactors and I have strong vested interest in that blade, and we're looking for associates to help us attain it. Get through the next two layers and come back to me.")
                 input("Crowley: I'm sure that mangy grimalkin has told you a lot as well. Do what you wish but be wary of vesting trust in a demon.")
                 if not checks.dialogue_checks['kobaguidecheck']:
                     checks.kobaneko_active_list[9] = "Crowley gave me some guidance."
@@ -176,12 +177,12 @@ def crowley():
                 continue
             case 9:
                 input("Crowley: You show unprecedented promise, my child. I think we are of a kind.")
-                input("Crowley: You are privy to the existence of the Society of the Deep Blue, I’m sure? You may know us as librarians. Keepers of the occult and esoteric. In some sense that is our task in modernity. But this is merely a holdover from our true task for the past 500 years.")
+                input("Crowley: You are privy to the existence of the Society of the Deep Blue, I'm sure? You may know us as librarians. Keepers of the occult and esoteric. In some sense that is our task in modernity. But this is merely a holdover from our true task for the past 500 years.")
                 input("Crowley: Even as states and bloodlines dissolved, and power shifted from one to another. We remained the same, our irrefutable duty never changed. To protect mankind from the torment of demonkind.")
-                input("Crowley: As fellow humans, we share the same goals, and I continue to pray earnestly for your wellbeing. Like I mentioned, I wantyou to help us achieve our goals, don’t worry about the details for now. Just focus on getting through the next floor safely. It is guarded by an incredibly powerful demon from the last era. Take this charm and stay safe.")
+                input("Crowley: As fellow humans, we share the same goals, and I continue to pray earnestly for your wellbeing. Like I mentioned, I wantyou to help us achieve our goals, don't worry about the details for now. Just focus on getting through the next floor safely. It is guarded by an incredibly powerful demon from the last era. Take this charm and stay safe.")
                 continue
             case 10:
-                input("Crowley: You are simply incredible, my child. I haven’t seen this much potential since Lord Minamoto. I must have mentioned this to you already, but there used to be a King. A King of Hell. Daimaou, the demons called it. A Demon Lord.")
+                input("Crowley: You are simply incredible, my child. I haven't seen this much potential since Lord Minamoto. I must have mentioned this to you already, but there used to be a King. A King of Hell. Daimaou, the demons called it. A Demon Lord.")
                 input("Crowley: Its will was absolute and even the most cantankerous and bloodthirsty among them would grovel beneath it. It was not a king by nature of its birth mind you, nor by common vote. [he chuckles mildly, as if to imply it was a laughable concept]. No, it ruled with sheer force. Only by its inarguable might did other demons bow.")
                 input("Crowley: So there then begs the question, could it mean that in all the infinite millenia that demons have crawled and struggled and consumed and lied and fought for power, that this creature was their ultimate evolution? That there could exist none other, that no demon was ever successful in having its head? Of course not.")
                 input("Crowley: As it is in the nature of those beasts to struggle and grow ever more, eventually something emerges from the pits of hell so powerful that the dynamic is upset. These two impossible forces clash, and thus would demons spill forth from every chasm and every unholy place, bringing death and disease, chaos and famine.")
@@ -200,7 +201,7 @@ def kobaneko():
         input("Kobaneko: You and I have nothing to discuss. Leave.")
     if checks.dungeon_level > 1 and checks.dialogue_checks['dungLevelKobancheck'] == 0:
         checks.dialogue_checks['dungLevelKobancheck'] = 1
-        checks.kobaneko_active_list[7] = "I’ve been to the dungeon"
+        checks.kobaneko_active_list[7] = "I've been to the dungeon"
     if checks.dungeon_level > 3 and checks.dialogue_checks['dungLevelKobancheck'] == 1:
         checks.dialogue_checks['dungLevelKobancheck'] = 2
     if checks.dialogue_checks['kobanBreak']:
@@ -212,30 +213,30 @@ def kobaneko():
                 input("Kobaneko: [she leans in awfully close] You humans are so deliciously unpurrrr-dictable. You wish to throw away all the comforts of the world above and dig your way into hell for some flimsy sword?")
                 input("Kobaneko: If the unnamed katana is what you seek then you must fall even deeper than you already have. Into a place so steeped in darkness that no man returns unchanged…")
                 input("Kobaneko: [her expression reverts back to normal] Nya-sk Dr.Crowley at the Demonitorium for more info!")
-                checks.kobaneko_active_list[11] = ["Be seeing you"]
+                checks.kobaneko_active_list[11] = "Be seeing you"
                 continue
             case 2:
                 input("Kobaneko: Nya! If strength is what you seek then go over to the demonitorium and slaughter to your hearts content. Nyihihi!")
                 continue
             case 3:
                 input("Kobaneko: Ohh. Ichor is a wonderful place!")
-                input("Kobaneko: If you’re hurt you can go to the church!")
+                input("Kobaneko: If you're hurt you can go to the church!")
                 input("Kobaneko: If you need herbs or tools you can visit the apothecary!")
                 input("Kobaneko: And if you want to test your skills against demons, head over to the demonitorium!")
                 continue
             case 4:
-                input("Kobaneko: Talk like how? This is just the tongue of Nya’s people!")
+                input("Kobaneko: Talk like how? This is just the tongue of Nya's people!")
                 continue
             case 5:
-                input("Kobaneko: We’re everything inbetween! When a human is exposed to a lot of seithr at once, overtime they start to gain traits, and these are passed down to their children! And their childrens children!")
+                input("Kobaneko: We're everything inbetween! When a human is exposed to a lot of seithr at once, overtime they start to gain traits, and these are passed down to their children! And their childrens children!")
                 input("Kobaneko: Ah the cycle of life is so beautiful!")
                 input("Kobaneko: Of course, some of us are half-demons! We even allow regular demons if they agree to behave.")
                 input("Kobaneko: Ichor is welcoming to all who are willing to abide by its absolute NO VIOLENCE clause!")
-                checks.kobaneko_active_list[5] = "Seithr? What’s that"
+                checks.kobaneko_active_list[5] = "Seithr? What's that"
                 checks.kobaneko_active_list[6] = "No Violence clause?"
                 continue
             case 6:
-                input("Kobaneko: It’s all around nya’s world! It’s the wonderful clay of creation!")
+                input("Kobaneko: It's all around nya's world! It's the wonderful clay of creation!")
                 input("Kobaneko: However, it's most concentrated in the demon world, and any human that stays here for too long starts to change.")
                 continue
             case 7:
@@ -244,7 +245,7 @@ def kobaneko():
             case 8:
                 input("Kobaneko: Oh? Really, you talked to Crowley too?")
                 input("Kobaneko: So how was it? Enjoyed your first taste of demon blood?")
-                input("Kobaneko: Oh don’t be coy, out there it’s kill or be killed. It’s in the nature of this world for us to tear ourselves apart.")
+                input("Kobaneko: Oh don't be coy, out there it's kill or be killed. It's in the nature of this world for us to tear ourselves apart.")
                 input("Kobaneko: Well, truth be told, It didn't always use to be like that.")
                 if not checks.dialogue_checks['kobamaoucheck']:
                     checks.kobaneko_active_list[8] = "How was it before."
@@ -253,10 +254,10 @@ def kobaneko():
                 continue
             case 9:
                 input("Kobaneko: When I was still just a kitten, and when the Demon Lord was still alive… Weak demons were protected and stronger demons were given purpose…")
-                input("Kobaneko: It wasn’t absolute chaos. He ruled by strength as all demons should— he gave us safe territories and showed no mercy to those who broke them.")
+                input("Kobaneko: It wasn't absolute chaos. He ruled by strength as all demons should— he gave us safe territories and showed no mercy to those who broke them.")
                 continue
             case 10:
-                input("Kobaneko: That old coot sure seems to have taken a liking to you. But yes, everything he said was true. The blade is a crystallization of the goddess’s power.")
+                input("Kobaneko: That old coot sure seems to have taken a liking to you. But yes, everything he said was true. The blade is a crystallization of the goddess's power.")
                 input("Kobaneko: One who wields it has the power to shape the demon world, but the depths are far too dangerous, and at the end of the 4th floor stands a demon from an era long gone. Said to be so powerful that none could ever manage to stand up to him...")
                 input("Kobaneko: Good luck! Here's a lucky charm from yours truly.")
                 input("[Kobaneko gives you a brilliant gold coin... the way her countenance can change in such a short time is eery.]")
@@ -265,7 +266,7 @@ def kobaneko():
             case 11:
                 if not checks.dialogue_checks['kobasubjcheck']:
                     input("Kobaneko: I figured as much, that man always had such a catty~ attitude about him.")
-                    input("Kobaneko: Well, he says that’s what you’re meant to do, right? Because you’re human. Right? Surely, you must share his goals.")
+                    input("Kobaneko: Well, he says that's what you're meant to do, right? Because you're human. Right? Surely, you must share his goals.")
                     input("Kobaneko: Although, the fact you came all the way to tell me this begs to differ. So then, I ask you, my dear human. Is this truly your heart's desire? Do you earnestly with all your heart seek the eradication of free will within all demonkind?")
                     ans = dialog_choice('', ["Yes", "I'm unsure", "No"], False)
                     match ans:
@@ -275,21 +276,21 @@ def kobaneko():
                             checks.dialogue_checks['kobanBreak'] = True
                             break # ask if this is supposed to end the whole conversation
                         case 2:
-                            input("Kobaneko: You seek the blade for yourself, don’t you? You came here seeking power and you’re at the cusp of it.")
+                            input("Kobaneko: You seek the blade for yourself, don't you? You came here seeking power and you're at the cusp of it.")
                             input("Kobaneko: Do what you humans do best and keep moving forward. The rest will fall into place eventually.")
                             checks.dialogue_checks['endKobanCheck'] = True
                             continue
                         case 3:
-                            input("Kobaneko: Even knowing our nature you still seek to protect us. You’re a curious one, ${name}.")
+                            input("Kobaneko: Even knowing our nature you still seek to protect us. You're a curious one, ${name}.")
                             input("Kobaneko: To have defeated the Gigas, your strength is without question. Many demons are watching you already. Ever since you came out of the 3rd floor unscathed, innumerable eyes have been placed on you. Watching your evergrowing power.")
                             input("Kobaneko: Allow me to let you in on a secret so steeped in hell and wrapped in the secrets of demon-tongue, that not even those of the Blue know this.")
-                            input("Kobaneko: ‘The Goddess is alive’.")
+                            input("Kobaneko: 'The Goddess is alive'.")
                             input("Kobaneko: Not an undying corpse, or in some deep sleep, but Alive. Shocking, I know, but we can feel it. All demons can, she is our mother, after all. We feel the soft thumping under the earth with every beat of her heart. She is awake, but quiet.")
                             checks.dialogue_checks['endKobanCheck'] = True
                             continue
                     input("Kobaneko: The former Daimaou was slain by a man called Minamoto no Raiko. He tore through the demon realm with naught but sword and lightning stolen from the heavens.")
                     input("Kobaneko: He was an unseen flash of pure white and rumbling thunder, and even though he was undoubtedly human, he moved with a viciousness unseen even among demonkind. In their grand ensuing battle, they slew each other.")
-                    input("Kobaneko: This ‘sword’ was born soon after. It is unknown what was so special about their bout that caused this to happen, or if both events are even related, but we know for a fact that whoever wields it has the power to become a new Daimaou.")
+                    input("Kobaneko: This 'sword' was born soon after. It is unknown what was so special about their bout that caused this to happen, or if both events are even related, but we know for a fact that whoever wields it has the power to become a new Daimaou.")
                     input("Kobaneko: Whether protecting mankind is your wish, or obtaining absolute power is your wish, the only path to either is to take up this unholy mantle.")
                     checks.dialogue_checks['kobasubjcheck'] = True
                 input("Kobaneko: I'll wait for you on the final floor.")
@@ -302,16 +303,14 @@ def kobaneko():
 def one_horned_lady(player: Base_Player):
     qasked = False
     while True:
-        question = dialog_choice('', ["Who are you?" "Where am I" f"My name is {player.name}"], False)
+        question = dialog_choice('', ["Who are you?", "Where am I", f"My name is {player.name}"], False)
         match question:
             case 1:
-                input("Angry woman: *glares* I’m your guide, I’m to register you. Name.")
+                input("Angry woman: *glares* I'm your guide, I'm to register you. Name.")
                 qasked = True
-                continue
             case 2:
                 input("Angry woman: This is the town of Ichor, where the dregs of mankind wind up when the above world is done with them. Name.")
                 qasked = True
-                continue
             case 3:
                 input("Angry woman: Good.")
                 if  qasked:
@@ -321,14 +320,14 @@ def one_horned_lady(player: Base_Player):
                 input("Before you can respond you're immediately accosted by another smaller woman, not as intimidating as the last but her catlike physiology and clear disregard for personal space was still startling.")
                 input("Kobaneko: Nya-hallo. My name is Kobaneko! I'm here to be your guide through the demon world!")
                 input("Kobaneko: This is Ichor; no matter where you enter from, all humans end up here! Isn't this place great!")
-                input("Kobaneko: So… What dragged nya’s sorry behind down here…")
+                input("Kobaneko: So… What dragged nya's sorry behind down here…")
                 break
 
 
 def final_floor(player):
     input("You take extreme care as you step lower and lower into the abyss, a dull thudding sound seems to move through the entire structure. Beneath your feet lay colorful rolls of fabric with myriad patterns, the density increasing as you pierced lower and lower.")
     input("By the point you had reached the bottom of the staircase, there were so many of them that they covered up the entire floor, and as you lift your gaze up you see the decorated corpse of the goddess. A macabre carcass, its chest cavity spread open like a blooming flower, as streams of cloth flowed out of it like a gushing wound. Its arms lay splayed at the sides and its head nailed to the wall. It looked almost ritualistic.")
-    input("And inside, deep within all that, a rigid beam of pure light shot out where her heart would be. Your eyes had trouble focusing on it, it shone with an excruciating incandescence, but you were sure somehow, there wasn’t even an inkling of doubt in your heart, that this was the sword of myth.")
+    input("And inside, deep within all that, a rigid beam of pure light shot out where her heart would be. Your eyes had trouble focusing on it, it shone with an excruciating incandescence, but you were sure somehow, there wasn't even an inkling of doubt in your heart, that this was the sword of myth.")
     input("It stirs.")
     input("The grey rotten corpse lurches forward, ripping off its own affixed head and leaving it dangling behind. A headless lanky creature hunched over you at least thrice your height, all the while fabric continued to pour out of its chest. Only one word it muttered, even though where once stood its head now was a mere stump, you were sure beyond doubt that this was being made by it.")
     print('')
@@ -341,10 +340,10 @@ def final_floor(player):
         input("Crowley: But your work is splendid nonetheless. All you need do now is simply reach out for it, and all the power is yours.")
         input("Kobaneko, who neither of you seems to have noticed slink in, is standing to your right. The look of revulsion on Crowley's face is evident and immediate. She stood with the head of the corpse in her arms, holding it like it were a child.")
         input("Kobaneko: Dearest mother. Forgive these humans who so brazenly desecrate your grave…")
-        input("Kobaneko: Do you believe he has your best wishes at heart? I know what the society of Blue does, and what they are. You’re less than a tool to them.")
+        input("Kobaneko: Do you believe he has your best wishes at heart? I know what the society of Blue does, and what they are. You're less than a tool to them.")
         input("Kobaneko: What do you think will become of your beloved human world when one party wields the entire force of the demonic realm.")
         input("Kobaneko: The answer is hell on earth, more guided and precise than anything a demonic incursion could ever cause.")
-        input("Kobaneko: I’m not saying that you should trust only me. I am a demon after all. But there is a reason why new demon kings are created time and time again. The balance between man’s destiny and ours rests on an impossibly thin knife edge.")
+        input("Kobaneko: I'm not saying that you should trust only me. I am a demon after all. But there is a reason why new demon kings are created time and time again. The balance between man's destiny and ours rests on an impossibly thin knife edge.")
         input("Kobaneko: If you want to subjugate demons then do it with your own strength. If you want to save humanity, then do it of your own will.")
 
         input("Crowley: Utter drivel!")
@@ -353,44 +352,38 @@ def final_floor(player):
         input("Crowley: Do you understand what this means? Each Daimaou is inevitably more powerful than the last,and mankind cannot keep them at bay til eternity. One day, the dam will break and we will fall under the might of a Demon King powerful enough to tear the bridge between our worlds open.")
         input("Crowley: So you see, this is why we must obtain the sword. For the sake of mankind, for the absolute subjugation of the enemy, you… we must ascend.")
 
-    endarr = ["Take the Sword in your own Name"]
+    endarr = ["Take the Sword in your own Name", None, None]
     if checks.dialogue_checks['endKobanCheck']:
-        endarr += ["Become the King of Hell"]
+        endarr[1] = "Become the King of Hell"
     if checks.dialogue_checks['endCrowCheck']:
-        endarr += ["Enslave demonkind in the name of Humanity"]
+        endarr[2] = "Enslave demonkind in the name of Humanity"
 
     input("[you hear a voice]")
-    input("???: Reach for the blade and your true heart’s desire will be crystallized.")
+    input("???: Reach for the blade and your true heart's desire will be crystallized.")
     choice = dialog_choice('', endarr, False)
     match choice:
         case 1:
             print("redeemed")
             end = "redeemed"
-        case _:
-            if endarr[choice - 1] == "Become the King of Hell":
-                print("ascend")
-                end = "ascend"
-            elif endarr[choice - 1] == "Enslave demonkind in the name of Humanity":
-                print("subjugate")
-                end = "subjugate"
-
-    match end:
-        case "redeemed":
             input("Light swirls around your body and you draw a blade of gold and silver.")
             input("It seems less majestic than you expected.")
             input("Almost... inconsequential.")
-        case "ascend":
+        case 2:
+            print("ascend")
+            end = "ascend"
             input("You reach out and draw the beam of light, its form begins to coalesce immediately.")
             input("Crowley: Impossible! You drew the blade of the former demon king!?")
             input("Kobaneko: 'Hi-no-Kagutsuchi'")
             input("[the look on his face is almost indecipherable, but his eyes were locked solely on you]")
             input("Crowley: Why would a human want to mingle with subhuman filth… Above his own kind. It defies all logic. No, it goes against nature itself.")
-            input("Crowley: An aberration like you- with all the knowledge I’ve given you. Becoming Demon King? I cannot suffer you leave this place alive")
+            input("Crowley: An aberration like you- with all the knowledge I've given you. Becoming Demon King? I cannot suffer you leave this place alive")
             battle(player, [enemy_models.Crowley()])
-        case "subjugate":
+        case 3:
+            print("subjugate")
+            end = "subjugate"
             input("You reach out and draw the beam of light, its form begins to coalesce immediately.")
             input("Kobaneko: Ah, the blade of Emperor Sutoku. So this is the path you have chosen, dear Human.")
-            input("Kobaneko: Maybe I did rely on you far too much. Either way, I can’t very well let you leave this place knowing what you plan to do with that.")
+            input("Kobaneko: Maybe I did rely on you far too much. Either way, I can't very well let you leave this place knowing what you plan to do with that.")
             input("[the ribbons around you seem to coalesce, bundling and knotting together into a terrifying figure]")
             input("Kobaneko: If you truly believe yourself to be worthy of subjugating all demonkin, then a simple thing as defeating a Daimaou should be an afterthought")
             battle(player, [enemy_models.Kobagami()])
@@ -401,7 +394,7 @@ def final_floor(player):
         input("Without a second word, he is upon you.")
         battle(player, [enemy_models.Whiten()])
         input("White: Your strength is unparalleled. You are-...")
-        input("His last few words were muffled, as the room began to unfold and warp. Above you, which should’ve been the upper floors of the depth, now bore open the crimson skies of the demon realm.")
+        input("His last few words were muffled, as the room began to unfold and warp. Above you, which should've been the upper floors of the depth, now bore open the crimson skies of the demon realm.")
         end = izanagi(end)
     ending(player, end)
 
@@ -428,7 +421,7 @@ def izanagi(end):
                 continue
             case 5:
                 input("Izanagi-no-Mikoto: Yes. The only way for her to be free is for a powerful enough Daimaou to break the seals I placed on her almost a millennia ago.")
-                input("Izanagi-no-Mikoto: His former purpose, and your new one, is to take the head of any demon king who attempts such an act. That sword you wield was merely a stopgap until a new ‘Messenger’ could be found.")
+                input("Izanagi-no-Mikoto: His former purpose, and your new one, is to take the head of any demon king who attempts such an act. That sword you wield was merely a stopgap until a new 'Messenger' could be found.")
                 input("Izanagi-no-Mikoto: So fierce warrior, do you pledge loyalty to me?")
                 response = dialog_choice('', back=False)
                 if response:
@@ -449,7 +442,7 @@ def ending(player: Base_Player, end):
             input("Your legend washes over your unseemly past and your popularity gets you mercenary work from powerful lords. You grow rich in treasure and favour, and retire not too long after.")
             input("On a night like any other, while asleep in your home, an unassailable swarm of demons rolls over the land and you are consumed.")
         case "ascend":
-            input("As you wield the sword, ‘Hi-no-Kagutsuchi’, you feel demonic energy swell within you. Your body is permanently transformed. You can see much more than before and your power only seems to grow by the second. With this newfound strength, you set out into the realms of hell as the New Daimaou.")
+            input("As you wield the sword, 'Hi-no-Kagutsuchi', you feel demonic energy swell within you. Your body is permanently transformed. You can see much more than before and your power only seems to grow by the second. With this newfound strength, you set out into the realms of hell as the New Daimaou.")
             input("Most demons you encounter wilt in your presence, some would simply show reverence. Others would challenge you for your title. You take back territory from demons that once belonged to Ichor.")
             input("Eventually, Ichor is expanded out tremendously and the narrow pit that connected both worlds widens into a gaping maw as a result. Using your experience living in both, you allow for trade and communication to spur between both worlds.")
             input(f"Demons and humans find more in common and you create a somewhat uneasy alliance between both races. Your image is immortalized in the center of Ichor as Daimaou {player.name}")
@@ -459,13 +452,13 @@ def ending(player: Base_Player, end):
             input("Alongside the assistance of the Order of Blue and the shrewd Crowley, you take over the majority of Japan and entitle yourself as 'The Emperor Mandated by Hell'")
         case "whitewar":
             input("You become as light, your body and blade is weightless and your mind is scattered against time and space. You are engulfed in pure white and for a time, you sleep.")
-            input("You don’t know for how long, but soon enough you awaken elsewhere. Before you stands the visage of a woman and in front of her lay a terrible demon wielding a flaming sword.")
+            input("You don't know for how long, but soon enough you awaken elsewhere. Before you stands the visage of a woman and in front of her lay a terrible demon wielding a flaming sword.")
             input("Your memories are a haze and you are unsure where you are, but you understand deep within yourself that you are here to slaughter. A feeling so deep and inscribed that it seemed as though it was what you were born for.")
             input("And so with thundering steel, the fated clash begins anew.")
-    credits()
+    credits(player)
 
 
-def credits():
+def credits(player):
     print("originally developed in bash by AxiomDays")
     print("")
     print("ported to python by King Zero")
@@ -473,5 +466,5 @@ def credits():
     print("written by AxiomDays")
     print("")
     print("Thanks for Playing!")
-    # save
+    save(player)
     exit()

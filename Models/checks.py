@@ -41,6 +41,7 @@ crowley_active_list=[
     None,
     None,
     None,
+    "Bye"
 ]
 
 white_active_list = [
@@ -49,7 +50,8 @@ white_active_list = [
     "About Kobaneko",
     "About Demon King",
     "Holy Judgement?",
-    "About Nameless Katana"
+    "About Nameless Katana",
+    "Goodbye"
 ]
 
 izanagi_active_list = [

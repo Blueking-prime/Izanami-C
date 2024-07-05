@@ -1,8 +1,8 @@
 import json
 from datetime import datetime
 from os import listdir
-from ccc import checks, dialog_choice
-from Models import parameters
+from Models import parameters, checks
+from Models.utils import dialog_choice
 from Models.Characters.Players import base_player
 from Models.Characters.Players import player_models
 
@@ -46,7 +46,7 @@ def load():
         if not confirm:
             continue
 
-        save_file = save_folder + '/' + '2024-07-04T22:38:43.045580.json' #save_files[x]
+        save_file = save_folder + '/' + save_files[x]
         with open(save_file, 'r') as s:
             game_state = json.load(s)
 

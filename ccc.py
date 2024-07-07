@@ -3,12 +3,15 @@ from Models.utils import dialog_choice
 from Models.Maps.town import Town
 from Models.Characters.Players import player_models
 from Scripts import dialogue, save
-from os import system
+from os import system, path, makedirs
 
 menu = ['New game', 'Load game']
 
 if __name__ == '__main__':
     system('clear')
+
+    if not path.isdir(save.save_folder):
+        makedirs(save.save_folder)
     if len(save.listdir(save.save_folder)) == 0:
         menu[1] = None
         dialogue.tutorial()
@@ -70,7 +73,6 @@ if __name__ == '__main__':
         print('These are your parameters: ')
         print(player.stats)
         dialogue.fall(player)
-        save.save(player)
 
         dialogue.one_horned_lady(player)
         dialogue.kobaneko()

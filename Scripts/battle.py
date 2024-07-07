@@ -84,19 +84,19 @@ def battle(player: Base_Player, enemy_array: list[Base_Enemy]):
 
         for enemy in enemy_array:
             if enemy.status_effect == 'Death':
+                player.gold += enemy.gold_drop
+                player.level_up(enemy.exp_drop)
                 enemy.die()
-            if not enemy.alive:
-                enemy_array.remove(enemy)
 
         if len(enemy_array) < 1:
             print("You've defeated all the enemies!")
             break
 
-        # # ENEMY TURN
-        # print('---------------ENEMY TURN----------------')
-        # for enemy in enemy_array:
-        #     # Each enemy runs their own predetermined battle script
-        #     enemy.battle_script() #todo: implement enemy battle script
+        # ENEMY TURN
+        print('---------------ENEMY TURN----------------')
+        for enemy in enemy_array:
+            # Each enemy runs their own predetermined battle script
+            enemy.battle_script(player) #todo: implement enemy battle script
 
         turncount += 1
         player.restore()

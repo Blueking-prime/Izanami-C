@@ -1,4 +1,6 @@
 from ..base_character import Base_Character, parameters
+from ...utils import randint
+from ...Skills.base_skill import Heal_Skill
 
 class Base_Enemy(Base_Character):
     def __init__(self,
@@ -14,3 +16,11 @@ class Base_Enemy(Base_Character):
     @property
     def exp_drop(self):
         return sum(self.stats.values()) * 9
+
+    def battle_script(self, player):
+        skill_no = randint(0, len(self.skills))
+        skill = self.skills[skill_no]
+        if isinstance(skill, Heal_Skill):
+            skill.action(self, self)
+        else:
+            skill.action(self, player)

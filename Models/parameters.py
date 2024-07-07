@@ -10,6 +10,8 @@ gear_parts = ['head', 'weapon', 'body']
 
 moves = ['Run', 'Defend', 'Skills', 'Items']
 
+enemies = ['Goblin', 'Imp', 'Hobgoblin', 'Oni', 'Orias', 'Balam', 'Human', 'Ghost', 'Sphinx', 'Belial', 'Gigas', 'Devourer', 'Izanami', 'Crowley', 'Kobagami', 'Whiten']
+
 inventory = {
     'Medicine': 5,
     'Tonic': 2,

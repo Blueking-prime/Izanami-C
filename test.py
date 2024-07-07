@@ -60,9 +60,10 @@ razor = Base_Item({
 dummy.inventory += [leaf, razor]
 dummy.gold = 1000
 
+# Town().dungeon(dummy)
 # print(dummy.__dict__)
 # save(dummy, checks)
-dummy, check_d = load(checks)
+# dummy, check_d = load(checks)
 # if dummy:
 #     dummy.update_stats()
 #     print(dummy.__dict__)

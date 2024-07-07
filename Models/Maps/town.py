@@ -155,9 +155,6 @@ class Town:
                             player.mag += x
                         else:
                             print("You don't have enough Yen")
-                        continue
-                    else:
-                        continue
                 case 2:
                     fights = checks.demon_training
                     while True:
@@ -173,10 +170,11 @@ class Town:
                                     print("Broke ass n*gga")
                         except KeyError:
                             break
-                    continue
                 case 3:
                     dialogue.crowley()
-                    continue
+                case _:
+                    break
+        return
 
     def dungeon(self, player: Base_Player):
         print(f"You are travelling to Dungeon Level {checks.dungeon_level}")
@@ -184,19 +182,23 @@ class Town:
         if confirm:
             match checks.dungeon_level:
                 case 1:
-                    Dungeon().main(player)
+                    Dungeon(enemy_types=[enemy_models.Goblin, enemy_models.Oni]).main(player)
                 case 2:
-                    Dungeon().main(player)
+                    Dungeon(enemy_types=[enemy_models.Imp, enemy_models.Oni]).main(player)
                 case 3:
-                    Dungeon().main(player)
+                    Dungeon(enemy_types=[enemy_models.Imp, enemy_models.Orias]).main(player)
                 case 4:
-                    Dungeon().main(player)
+                    Dungeon(enemy_types=[enemy_models.Hobgoblin, enemy_models.Balam]).main(player)
                     battle(player, [enemy_models.Gigas()])
                 case 5:
-                    Dungeon().main(player)
+                    Dungeon(enemy_types=[enemy_models.Hobgoblin, enemy_models.Belial]).main(player)
                     dialogue.final_floor(player)
                 case _:
-                    Dungeon().main(player)
+                    Dungeon(
+                        width=16,
+                        height=10,
+                        enemy_types=[getattr(enemy_models, i) for i in parameters.enemies]
+                    ).main(player)
         return
 
     def status(self, player: Base_Player):

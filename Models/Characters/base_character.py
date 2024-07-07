@@ -51,7 +51,10 @@ class Base_Character:
     def use_skill(self, skill: str, target):
         for x in self.skills:
             if x.name == skill:
-                return x.action(self, target)
+                val = x.action(self, target)
+                if hasattr(self, 'sp'):
+                    self.sp -= x.cost
+                return val
         return False
 
     def damage(self, value: float):
@@ -76,3 +79,4 @@ class Base_Character:
     def die(self):
         print(f'{self.name} is dead')
         self.alive = False
+        del self

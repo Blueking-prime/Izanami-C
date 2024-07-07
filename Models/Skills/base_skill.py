@@ -26,7 +26,6 @@ class Base_Skill:
         if obj.sp <= 0:
             print('Out of SP')
             return False
-        obj.sp -= self.cost
 
         stat_total = 0
 

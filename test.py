@@ -77,7 +77,7 @@ dummy.gold = 1000
 #     print(stats_[x - 1])
 
 
-# battle(dummy, [enemy1, enemy2])
+battle(dummy, [enemy1, enemy2])
 
 # while True:
 #     dun = Dungeon(enemy_types=[Goblin])

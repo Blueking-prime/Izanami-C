@@ -73,7 +73,6 @@ def battle(player: Base_Player, enemy_array: list[Base_Enemy]):
 
                     print('----------------------')
                     x = player.act(moves[action], inst_name, target)
-                    print(x)
                     if not x:
                         continue
                     print('----------------------')
@@ -84,9 +83,12 @@ def battle(player: Base_Player, enemy_array: list[Base_Enemy]):
 
         for enemy in enemy_array:
             if enemy.status_effect == 'Death':
+                enemy.die()
+            if not enemy.alive:
+                print('died')
                 player.gold += enemy.gold_drop
                 player.level_up(enemy.exp_drop)
-                enemy.die()
+                enemy_array.remove(enemy)
 
         if len(enemy_array) < 1:
             print("You've defeated all the enemies!")
@@ -96,7 +98,7 @@ def battle(player: Base_Player, enemy_array: list[Base_Enemy]):
         print('---------------ENEMY TURN----------------')
         for enemy in enemy_array:
             # Each enemy runs their own predetermined battle script
-            enemy.battle_script(player) #todo: implement enemy battle script
+            enemy.battle_script(player)
 
         turncount += 1
         player.restore()

@@ -23,6 +23,8 @@ class Dungeon:
         self.spawn_chance = spawn_chance
         self.gear_drops = gear
         self.item_drops = items
+        self.exit_flag = False
+        self.legend = ['I', 'O', '*', 'T', '█']
 
         check = False
         while not check:
@@ -49,9 +51,17 @@ class Dungeon:
 
     def main(self, player):
         print('-------------------------------------')
-        while True:
+        print("LEGEND")
+        print(f"{self.legend[2]} = Player")
+        print(f"{self.legend[3]} = Treasure")
+        print(f"{self.legend[4]} = Wall")
+        print(f"{self.legend[1]} = Exit")
+        print("Use 'l', 'r', 'u', and 'd' to move")
+
+        while not self.exit_flag:
             x = input('direction? ')
             player.move(self, x)
+            print('-------------------------------------')
 
     def generate_dungeon_layout(self):
         self.width -= 1
@@ -124,7 +134,7 @@ class Dungeon:
     def check_tile(self, player):
         if self.player_pos in self.filled_coords:
             if self.player_pos == self.stop:
-                self.exit_dungeon(player)
+                self.exit_dungeon()
             elif self.player_pos in self.treasure_tiles:
                 self.collect_treasure(player)
             elif self.player_pos in self.enemy_tiles:
@@ -132,10 +142,10 @@ class Dungeon:
             else:
                 pass
 
-    def exit_dungeon(self, player):
-        x = utils.dialog_choice("Do you want to leave the Dungeon?")
+    def exit_dungeon(self):
+        x = utils.dialog_choice("Do you want to leave the Dungeon?", back=False)
         if x:
-            pass
+            self.exit_flag = True
 
     def collect_treasure(self, player):
         if utils.rand_chance(0.5):
@@ -186,19 +196,19 @@ class Dungeon:
         dungeon_map = [[' ' for _ in range(self.width)] for _ in range(self.height)]
 
         # Start
-        dungeon_map[self.start[1]][self.start[0]] = 'I'
+        dungeon_map[self.start[1]][self.start[0]] = ' '
 
         # Stop
-        dungeon_map[self.stop[1]][self.stop[0]] = 'O'
+        dungeon_map[self.stop[1]][self.stop[0]] = self.legend[1]
 
         # Player_pos
-        dungeon_map[self.player_pos[1]][self.player_pos[0]] = '*'
+        dungeon_map[self.player_pos[1]][self.player_pos[0]] = self.legend[2]
 
         for i in self.treasure_tiles:
-            dungeon_map[i[1]][i[0]] = 'T'
+            dungeon_map[i[1]][i[0]] = self.legend[3]
 
         for i in self.walls:
-            dungeon_map[i[1]][i[0]] = '█'
+            dungeon_map[i[1]][i[0]] = self.legend[4]
 
         for i in dungeon_map:
             print(i)

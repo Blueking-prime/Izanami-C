@@ -23,11 +23,15 @@ class Base_Skill:
         if obj.status_effect == 'Exhausted':
             return False
 
-        if obj.sp <= 0:
-            print('Out of SP')
-            return False
+        if hasattr(obj, 'sp'):
+            if obj.sp <= 0:
+                print('Out of SP')
+                return False
+            obj.sp -= self.cost
 
         stat_total = 0
+        if self.flavour_text != '':
+            print(self.flavour_text)
 
         rand_num = randint(0, 10)
         if rand_num <= 1:
@@ -75,7 +79,7 @@ class Offensive_Skill(Base_Skill):
         self.trait = trait
 
     def action(self, obj, target):
-        super().action(obj, target)
+        val = super().action(obj, target)
         try:
             if self.trait == target.trait:
                 self.value *= 2
@@ -83,6 +87,7 @@ class Offensive_Skill(Base_Skill):
             pass
         self.value *= obj.ATK
         target.damage(self.value)
+        return val
 
 class Heal_Skill(Base_Skill):
     def action(self, obj, target):

@@ -1,5 +1,12 @@
 from .base_skill import Base_Skill, Offensive_Skill, Heal_Skill
 
+default_skills = [
+    Offensive_Skill(
+        'Attack',
+        stats=['STR']
+    )
+]
+
 goblin_skills = []
 
 imp_skills = []

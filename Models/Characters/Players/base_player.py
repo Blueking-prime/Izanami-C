@@ -43,6 +43,7 @@ class Base_Player(Base_Character):
             return x
         if action == 'Items':
             return self.use_items(inst, target)
+        return x
 
     def equip_gear(self, item: Base_Gear):
         if isinstance(item, Base_Gear):
